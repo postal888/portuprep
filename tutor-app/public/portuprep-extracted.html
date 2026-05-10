@@ -326,8 +326,6 @@ button.vocab-group-head:focus-visible{outline:2px solid var(--color-primary);out
 .yt-embed-wrap{background:#000;border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:16/9;position:relative}
 .yt-embed-wrap iframe{width:100%;height:100%;border:none}
 .yt-embed-wrap video{width:100%;height:100%;border:none;background:#000}
-.yt-center-toggle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42%;height:56%;border:none;background:transparent;cursor:pointer;z-index:4}
-.yt-center-toggle:focus-visible{outline:2px solid color-mix(in oklch,var(--color-primary) 82%,white);outline-offset:2px;border-radius:12px}
 .yt-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-4);color:var(--color-text-faint);background:var(--color-surface)}
 .transcript-panel{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);display:flex;flex-direction:column;min-height:0;overflow:hidden}
 .transcript-header{padding:var(--space-4);border-bottom:1px solid var(--color-border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
@@ -7050,6 +7048,8 @@ let __ytVideoTitle = '';
 let __transcriptTimedLines = [];
 let __transcriptActiveIdx = -1;
 let __ytPlayer = null;
+/** Защита от двойного YT.Player на одном iframe */
+let __ytBindGen = 0;
 let __ytSyncTimer = null;
 let __ytLocalVideoEl = null;
 let __ytLocalVideoUrl = '';
@@ -9056,24 +9056,6 @@ function teardownYtSync() {
   __ytTranscriptAutoscroll = false;
 }
 
-function ytTogglePlaybackFromCenterClick() {
-  try {
-    if (__ytLocalVideoEl) {
-      if (__ytLocalVideoEl.paused) __ytLocalVideoEl.play().catch(function () {});
-      else __ytLocalVideoEl.pause();
-      return;
-    }
-    if (__ytPlayer && typeof __ytPlayer.getPlayerState === 'function') {
-      var st = __ytPlayer.getPlayerState();
-      if (window.YT && window.YT.PlayerState && st === window.YT.PlayerState.PLAYING) {
-        if (typeof __ytPlayer.pauseVideo === 'function') __ytPlayer.pauseVideo();
-      } else if (typeof __ytPlayer.playVideo === 'function') {
-        __ytPlayer.playVideo();
-      }
-    }
-  } catch (e) {}
-}
-
 function renderYouTubeOfflineVideo(blob, opts) {
   opts = opts || {};
   if (!blob) return;
@@ -9084,11 +9066,8 @@ function renderYouTubeOfflineVideo(blob, opts) {
   if (!wrap) return;
   teardownYtSync();
   var url = URL.createObjectURL(blob);
-  wrap.innerHTML =
-    '<video id="yt-local-video" controls preload="metadata" playsinline></video>' +
-    '<button type="button" id="yt-center-toggle" class="yt-center-toggle" aria-label="Play/Pause"></button>';
+  wrap.innerHTML = '<video id="yt-local-video" controls preload="metadata" playsinline></video>';
   var v = document.getElementById('yt-local-video');
-  var centerToggle = document.getElementById('yt-center-toggle');
   if (!v) {
     try { URL.revokeObjectURL(url); } catch (e) {}
     return;
@@ -9126,13 +9105,6 @@ function renderYouTubeOfflineVideo(blob, opts) {
   v.addEventListener('ended', function () {
     __ytTranscriptAutoscroll = false;
   });
-  if (centerToggle) {
-    centerToggle.addEventListener('click', function (ev) {
-      ev.preventDefault();
-      ev.stopPropagation();
-      ytTogglePlaybackFromCenterClick();
-    });
-  }
 }
 
 function initYouTubeLocalVideoSpaceToggle() {
@@ -9256,12 +9228,14 @@ function ensureYoutubeIframeApi(cb) {
 }
 
 function bindYoutubePlayerForSync() {
-  teardownYtSync();
-  var origin = '';
-  try { origin = window.location.origin; } catch (e) {}
+  if (__ytLocalVideoEl) return;
   var iframe = document.getElementById('yt-player-frame');
   if (!iframe) return;
+  if (__ytPlayer) return;
+  var bindGen = __ytBindGen;
   ensureYoutubeIframeApi(function() {
+    if (bindGen !== __ytBindGen) return;
+    if (__ytPlayer) return;
     try {
       __ytPlayer = new YT.Player('yt-player-frame', {
         events: {
@@ -9323,7 +9297,12 @@ async function fetchAndRenderTranscript(vid) {
     var qs = new URLSearchParams({ v: vid });
     if (lang) qs.set('lang', lang);
     var r = await fetch('/api/youtube-transcript?' + qs.toString());
-    var data = await r.json();
+    var data;
+    try {
+      data = await r.json();
+    } catch (parseErr) {
+      throw new Error('Ответ не JSON — часто нет прокси /api/ на сервер с vite preview.');
+    }
     if (!r.ok) throw new Error(data.error || 'Ошибка сервера');
     var segments = data.segments;
     if (!segments || !segments.length) throw new Error('Субтитры не найдены');
@@ -9354,7 +9333,7 @@ async function fetchAndRenderTranscript(vid) {
       body.innerHTML = '<div class="empty-state" style="padding:var(--space-8)">' +
         '<i data-lucide="alert-circle"></i>' +
         '<p style="font-size:var(--text-sm);max-width:36ch">' + escapeHtml(msg) + '</p>' +
-        '<p style="font-size:var(--text-xs);color:var(--color-text-faint)">Попробуй другой ролик или язык в списке. Нужен dev-сервер (npm run dev) или vite preview.</p>' +
+        '<p style="font-size:var(--text-xs);color:var(--color-text-faint)">Попробуй другой ролик или язык. На хостинге нужен прокси <code>/api/</code> на процесс <code>npm run preview:api</code> (vite preview с API).</p>' +
         '<button type="button" class="btn btn-primary btn-sm" onclick="loadDemoTranscript()">Демо-субтитры</button></div>';
       lucide.createIcons();
       try {
@@ -9384,6 +9363,7 @@ async function loadYouTube() {
   const reloadBtn = document.getElementById('yt-reload-cc');
   if (reloadBtn) reloadBtn.style.display = 'inline-flex';
   teardownYtSync();
+  __ytBindGen++;
   var usedLocalVideo = false;
   var mode = ytPlaybackSource();
   var wantDownloads = mode === 'downloads';
@@ -9412,16 +9392,13 @@ async function loadYouTube() {
     var originParam = origin ? '&origin=' + origin : '';
     document.getElementById('yt-embed-wrap').innerHTML =
       '<iframe id="yt-player-frame" src="https://www.youtube.com/embed/' + vid +
-      '?enablejsapi=1&playsinline=1&rel=0&cc_load_policy=1&cc_lang_pref=pt' + originParam + '" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe>';
+      '?enablejsapi=1&playsinline=1&rel=0&modestbranding=1&cc_load_policy=1&cc_lang_pref=pt' +
+      originParam +
+      '" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>';
   }
   await fetchAndRenderTranscript(vid);
   if (!usedLocalVideo) {
     bindYoutubePlayerForSync();
-    setTimeout(function () {
-      if (!__ytLocalVideoEl && !__ytPlayer && document.getElementById('yt-player-frame')) {
-        bindYoutubePlayerForSync();
-      }
-    }, 1200);
   }
   setYtSaveOfflineBtnEnabled(!!(__transcriptTimedLines && __transcriptTimedLines.length));
   applyYtPlaybackSourceUi();
