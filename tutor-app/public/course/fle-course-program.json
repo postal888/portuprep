@@ -1,0 +1,1023 @@
+{
+  "meta": {
+    "title": "Falar... Ler... Escrever... Português",
+    "author": "Emma Eberlein O. F. Lima",
+    "app": "PortuPrep",
+    "language": "Brazilian Portuguese",
+    "totalUnits": 19,
+    "cefrRange": "A1–B1+"
+  },
+  "units": [
+    {
+      "id": 1,
+      "title": "No aeroporto",
+      "titleRu": "В аэропорту",
+      "pages": { "start": 7, "end": 24 },
+      "cefr": "A1",
+      "dialogueTitle": "No aeroporto",
+      "textoNarrativo": "Chegada ao Brasil — apresentações e primeiros contatos",
+      "topics": [
+        "Cumprimentos e despedidas",
+        "Apresentações pessoais",
+        "Profissões",
+        "Nacionalidades e países",
+        "Alfabeto e pronúncia"
+      ],
+      "grammar": [
+        {
+          "topic": "Verbo SER — presente do indicativo",
+          "details": "eu sou, você/ele/ela é, nós somos, vocês/eles/elas são",
+          "examples": ["Eu sou brasileiro.", "Ela é professora.", "Eles são americanos."]
+        },
+        {
+          "topic": "Pronomes pessoais do caso reto",
+          "details": "eu, você, ele, ela, nós, vocês, eles, elas",
+          "examples": ["Eu sou Maria.", "Você é estudante?"]
+        },
+        {
+          "topic": "Artigos definidos",
+          "details": "o (masc. sing.), a (fem. sing.), os (masc. pl.), as (fem. pl.)",
+          "examples": ["o professor", "a aluna", "os estudantes", "as professoras"]
+        },
+        {
+          "topic": "Artigos indefinidos",
+          "details": "um (masc. sing.), uma (fem. sing.), uns (masc. pl.), umas (fem. pl.)",
+          "examples": ["um livro", "uma mesa", "uns cadernos"]
+        },
+        {
+          "topic": "Concordância de gênero e número",
+          "details": "Adjetivos e artigos concordam com o substantivo em gênero e número",
+          "examples": ["o menino alto", "a menina alta", "os meninos altos"]
+        },
+        {
+          "topic": "Interrogativas básicas",
+          "details": "Quem? O que? Qual? Onde? Como? De onde?",
+          "examples": ["Quem é você?", "Qual é o seu nome?", "De onde você é?"]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Cumprimentos", "words": ["bom dia", "boa tarde", "boa noite", "olá", "oi", "tchau", "até logo", "com licença", "obrigado/a", "de nada"] },
+        { "group": "Profissões", "words": ["professor/a", "médico/a", "engenheiro/a", "advogado/a", "estudante", "secretário/a", "jornalista", "arquiteto/a"] },
+        { "group": "Nacionalidades", "words": ["brasileiro/a", "americano/a", "português/portuguesa", "argentino/a", "alemão/alemã", "francês/francesa", "inglês/inglesa", "japonês/japonesa"] },
+        { "group": "Países", "words": ["Brasil", "Estados Unidos", "Portugal", "Argentina", "Alemanha", "França", "Inglaterra", "Japão"] },
+        { "group": "No aeroporto", "words": ["passaporte", "voo", "bagagem", "alfândega", "portão", "embarque", "desembarque", "táxi", "ônibus"] }
+      ],
+      "communicativeFunctions": [
+        "Cumprimentar e despedir-se",
+        "Apresentar-se e apresentar outras pessoas",
+        "Dizer a nacionalidade e profissão",
+        "Perguntar e responder sobre identidade",
+        "Soletrar o próprio nome"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Onde morar?",
+      "titleRu": "Где жить?",
+      "pages": { "start": 25, "end": 46 },
+      "cefr": "A1",
+      "dialogueTitle": "Onde morar?",
+      "textoNarrativo": "Procurando apartamento — moradia em São Paulo",
+      "topics": [
+        "Moradia e habitação",
+        "Descrição de casa e apartamento",
+        "Localização",
+        "Família e pessoas próximas",
+        "Rotina diária"
+      ],
+      "grammar": [
+        {
+          "topic": "Pronomes possessivos",
+          "details": "meu/minha, seu/sua, nosso/nossa, dele/dela, deles/delas",
+          "examples": ["meu apartamento", "a sua casa", "nosso bairro"]
+        },
+        {
+          "topic": "Pronomes demonstrativos",
+          "details": "este/esta/isto (aqui), esse/essa/isso (aí), aquele/aquela/aquilo (lá)",
+          "examples": ["Este é meu apartamento.", "Esse bairro é bonito.", "Aquela rua é longa."]
+        },
+        {
+          "topic": "Verbos regulares -AR no presente",
+          "details": "morar, falar, trabalhar, estudar, gostar, precisar — conjugação completa",
+          "examples": ["Eu moro em São Paulo.", "Ela fala português.", "Nós trabalhamos muito."]
+        },
+        {
+          "topic": "Verbo ESTAR — presente do indicativo",
+          "details": "eu estou, você/ele/ela está, nós estamos, vocês/eles/elas estão",
+          "examples": ["Onde você está?", "Ele está em casa.", "Nós estamos no trabalho."]
+        },
+        {
+          "topic": "Verbo PRECISAR + de",
+          "details": "PRECISAR DE + substantivo / PRECISAR + infinitivo",
+          "examples": ["Eu preciso de um apartamento.", "Você precisa estudar."]
+        },
+        {
+          "topic": "Pronomes oblíquos átonos (introdução)",
+          "details": "me, te, o/a, nos, os/as — posição após o verbo",
+          "examples": ["Pode me ajudar?", "Vou te ligar.", "Eu a conheço."]
+        },
+        {
+          "topic": "Preposições de lugar",
+          "details": "em, no/na, perto de, longe de, ao lado de, em frente a, atrás de",
+          "examples": ["Moro no centro.", "O banco fica perto do metrô."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Moradia", "words": ["apartamento", "casa", "quarto", "sala", "cozinha", "banheiro", "varanda", "garagem", "andar", "elevador"] },
+        { "group": "Mobília", "words": ["cama", "sofá", "mesa", "cadeira", "armário", "geladeira", "fogão", "televisão"] },
+        { "group": "Localização", "words": ["centro", "bairro", "rua", "avenida", "esquina", "perto", "longe", "ao lado", "em frente"] },
+        { "group": "Família", "words": ["marido", "esposa", "filho/a", "pai", "mãe", "irmão/irmã", "avô/avó", "tio/tia"] }
+      ],
+      "communicativeFunctions": [
+        "Descrever a própria moradia",
+        "Falar sobre localização de lugares",
+        "Expressar necessidade (precisar de)",
+        "Falar sobre rotina diária",
+        "Perguntar e dar endereço"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Meu bairro",
+      "titleRu": "Мой район",
+      "pages": { "start": 47, "end": 62 },
+      "cefr": "A1+",
+      "dialogueTitle": "Meu bairro",
+      "textoNarrativo": "Conhecendo o bairro — serviços e estabelecimentos",
+      "topics": [
+        "Estabelecimentos do bairro",
+        "Serviços urbanos",
+        "Atividades cotidianas",
+        "Horários de funcionamento",
+        "Meios de transporte"
+      ],
+      "grammar": [
+        {
+          "topic": "Verbos regulares -ER e -IR no presente",
+          "details": "vender, beber, comer, escrever / abrir, dividir, partir — conjugação completa",
+          "examples": ["Ela vende pão.", "Nós abrimos às 8h.", "Você come aqui?"]
+        },
+        {
+          "topic": "Verbos irregulares: IR, VIR, TER, PÔR",
+          "details": "ir: vou, vai, vamos, vão; vir: venho, vem, vimos, vêm; ter: tenho, tem, temos, têm; pôr: ponho, põe, pomos, põem",
+          "examples": ["Eu vou ao mercado.", "Você vem comigo?", "Ele tem um carro.", "Ponho o livro na mesa."]
+        },
+        {
+          "topic": "Verbos irregulares: PODER, QUERER, SABER, DIZER",
+          "details": "poder: posso, pode, podemos, podem; querer: quero, quer, queremos, querem; saber: sei, sabe, sabemos, sabem; dizer: digo, diz, dizemos, dizem",
+          "examples": ["Posso entrar?", "Quero um café.", "Você sabe onde fica?", "Ele diz que sim."]
+        },
+        {
+          "topic": "Verbos irregulares: FAZER, TRAZER, VER, LER",
+          "details": "fazer: faço, faz, fazemos, fazem; trazer: trago, traz, trazemos, trazem; ver: vejo, vê, vemos, veem; ler: leio, lê, lemos, leem",
+          "examples": ["Faço exercício todo dia.", "Traga o livro!", "Vejo você amanhã.", "Leio muito."]
+        },
+        {
+          "topic": "Verbos irregulares: OUVIR, PEDIR, SAIR, PERDER, DORMIR",
+          "details": "ouvir: ouço, ouve; pedir: peço, pede; sair: saio, sai; perder: perco, perde; dormir: durmo, dorme",
+          "examples": ["Ouço música.", "Peço a conta.", "Saio às 18h.", "Durmo 8 horas."]
+        },
+        {
+          "topic": "Contrações de preposição com artigo",
+          "details": "de + o = do, de + a = da, em + o = no, em + a = na, a + o = ao, a + a = à",
+          "examples": ["Vou ao banco.", "Venho da escola.", "Moro no centro."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Estabelecimentos", "words": ["padaria", "farmácia", "supermercado", "banco", "correios", "escola", "hospital", "cinema", "restaurante", "bar"] },
+        { "group": "Transporte", "words": ["ônibus", "metrô", "táxi", "carro", "bicicleta", "a pé", "parada", "estação"] },
+        { "group": "Atividades", "words": ["comprar", "pagar", "entregar", "buscar", "levar", "trazer", "abrir", "fechar"] },
+        { "group": "Horários", "words": ["hora", "minuto", "manhã", "tarde", "noite", "cedo", "tarde (adv.)", "sempre", "nunca", "às vezes"] }
+      ],
+      "communicativeFunctions": [
+        "Descrever o próprio bairro",
+        "Perguntar e indicar direções",
+        "Falar sobre serviços e estabelecimentos",
+        "Expressar horários de funcionamento",
+        "Falar sobre meios de transporte utilizados"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "No restaurante",
+      "titleRu": "В ресторане",
+      "pages": { "start": 63, "end": 76 },
+      "cefr": "A2",
+      "dialogueTitle": "No restaurante",
+      "textoNarrativo": "Uma refeição especial — gastronomia brasileira",
+      "topics": [
+        "Alimentação e gastronomia brasileira",
+        "Cardápio e pedidos",
+        "Experiências passadas",
+        "Datas e eventos",
+        "Pagar a conta"
+      ],
+      "grammar": [
+        {
+          "topic": "Pretérito perfeito regular",
+          "details": "-AR: falei, falou, falamos, falaram; -ER: comi, comeu, comemos, comeram; -IR: abri, abriu, abrimos, abriram",
+          "examples": ["Ontem fui ao restaurante.", "Ela comeu feijoada.", "Nós pedimos sobremesa."]
+        },
+        {
+          "topic": "Pretérito perfeito irregular: SER/IR, TER, ESTAR",
+          "details": "SER/IR: fui, foi, fomos, foram; TER: tive, teve, tivemos, tiveram; ESTAR: estive, esteve, estivemos, estiveram",
+          "examples": ["Fui ao mercado.", "Ela esteve doente.", "Tivemos uma reunião."]
+        },
+        {
+          "topic": "Pretérito perfeito irregular: FAZER, DIZER, TRAZER, PODER, PÔR",
+          "details": "fazer: fiz, fez, fizemos, fizeram; dizer: disse, disse, dissemos, disseram; trazer: trouxe, trouxe, trouxemos, trouxeram; poder: pude, pôde, pudemos, puderam; pôr: pus, pôs, pusemos, puseram",
+          "examples": ["Fiz um bolo.", "Ele disse a verdade.", "Trouxeram presentes."]
+        },
+        {
+          "topic": "Pretérito perfeito irregular: QUERER, SABER, VIR, VER, DAR, HAVER",
+          "details": "querer: quis, quis, quisemos, quiseram; saber: soube, soube, soubemos, souberam; vir: vim, veio, viemos, vieram; ver: vi, viu, vimos, viram; dar: dei, deu, demos, deram; haver: houve",
+          "examples": ["Quis ir mas não pude.", "Soubemos a notícia.", "Vieram tarde."]
+        },
+        {
+          "topic": "Marcadores temporais do passado",
+          "details": "ontem, anteontem, na semana passada, no mês passado, no ano passado, há + tempo",
+          "examples": ["Ontem comi feijoada.", "Há dois anos fui ao Brasil."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Cardápio", "words": ["entrada", "prato principal", "sobremesa", "bebida", "suco", "refrigerante", "água", "vinho", "cerveja"] },
+        { "group": "Comidas brasileiras", "words": ["feijoada", "churrasco", "coxinha", "pão de queijo", "brigadeiro", "açaí", "tapioca", "moqueca"] },
+        { "group": "No restaurante", "words": ["garçom", "cardápio", "conta", "gorjeta", "reserva", "mesa", "pedido", "troco"] },
+        { "group": "Temperos e sabores", "words": ["sal", "açúcar", "pimenta", "doce", "salgado", "azedo", "picante", "gostoso"] }
+      ],
+      "communicativeFunctions": [
+        "Fazer pedidos em restaurante",
+        "Narrar eventos passados",
+        "Falar sobre experiências gastronômicas",
+        "Pedir e pagar a conta",
+        "Expressar opiniões sobre comida"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "No jornaleiro",
+      "titleRu": "В газетном киоске",
+      "pages": { "start": 77, "end": 86 },
+      "cefr": "A2",
+      "dialogueTitle": "No jornaleiro",
+      "textoNarrativo": "Assim não dá! — consumismo e hábitos de leitura",
+      "topics": [
+        "Meios de comunicação",
+        "Hábitos de leitura",
+        "Comparações",
+        "Quantidade e indefinição",
+        "Reclamações cotidianas"
+      ],
+      "grammar": [
+        {
+          "topic": "Comparativo de igualdade, superioridade e inferioridade",
+          "details": "tão...quanto / mais...do que / menos...do que; comparativos irregulares: melhor, pior, maior, menor",
+          "examples": ["Este livro é tão bom quanto aquele.", "Ele é mais alto do que eu.", "Este é o melhor restaurante."]
+        },
+        {
+          "topic": "Superlativo absoluto e relativo",
+          "details": "Relativo: o mais/menos + adj.; Absoluto: muito + adj. / adj. + -íssimo",
+          "examples": ["É o mais caro da cidade.", "Estou cansadíssimo.", "É muito interessante."]
+        },
+        {
+          "topic": "Pronomes indefinidos: tudo, todo/a/os/as",
+          "details": "tudo (= all, everything — invariável), todo/toda/todos/todas (= every, all — variável)",
+          "examples": ["Tudo está certo.", "Todo dia acordo cedo.", "Todos os alunos chegaram."]
+        },
+        {
+          "topic": "Pronomes indefinidos: algum/alguma, nenhum/nenhuma",
+          "details": "algum/alguma (some, any), nenhum/nenhuma (none, not any) — concordância com gênero",
+          "examples": ["Algum problema?", "Não tenho nenhuma ideia.", "Alguma coisa está errada."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Publicações", "words": ["jornal", "revista", "livro", "gibi", "conto", "romance", "notícia", "manchete", "artigo"] },
+        { "group": "Mídia", "words": ["televisão", "rádio", "internet", "site", "podcast", "rede social", "canal"] },
+        { "group": "Adjetivos de opinião", "words": ["interessante", "chato", "útil", "inútil", "importante", "caro", "barato", "bom", "ruim"] },
+        { "group": "Quantidade", "words": ["muito", "pouco", "bastante", "demais", "suficiente", "nada", "tudo", "alguns"] }
+      ],
+      "communicativeFunctions": [
+        "Comparar objetos e pessoas",
+        "Expressar quantidade e indefinição",
+        "Fazer reclamações",
+        "Falar sobre hábitos de leitura e mídia",
+        "Expressar opiniões com superlativos"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "No banco",
+      "titleRu": "В банке",
+      "pages": { "start": 87, "end": 100 },
+      "cefr": "A2",
+      "dialogueTitle": "No banco",
+      "textoNarrativo": "Serviços bancários — finanças pessoais",
+      "topics": [
+        "Serviços bancários",
+        "Finanças pessoais",
+        "Narração de eventos passados habituais",
+        "Descrições no passado",
+        "Infância e memórias"
+      ],
+      "grammar": [
+        {
+          "topic": "Imperfeito do indicativo — verbos regulares",
+          "details": "-AR: morava, morava, morávamos, moravam; -ER: bebia, bebia, bebíamos, bebiam; -IR: abria, abria, abrÍamos, abriam",
+          "examples": ["Quando criança, morava em Recife.", "Ela sempre bebia café."]
+        },
+        {
+          "topic": "Imperfeito irregular: SER, TER, PÔR, VIR",
+          "details": "SER: era, era, éramos, eram; TER: tinha, tinha, tínhamos, tinham; PÔR: punha, punha, púnhamos, punham; VIR: vinha, vinha, vínhamos, vinham",
+          "examples": ["Era uma vez...", "Tinha muito dinheiro.", "Vinham sempre aqui."]
+        },
+        {
+          "topic": "Contraste perfeito vs imperfeito",
+          "details": "Perfeito: ação concluída, pontual; Imperfeito: ação habitual, contínua, descrição de fundo",
+          "examples": ["Quando estava no banco, ele chegou.", "Ia ao banco todo dia."]
+        },
+        {
+          "topic": "Expressões temporais do imperfeito",
+          "details": "sempre, nunca, às vezes, frequentemente, antigamente, quando era criança, todo dia/semana/mês",
+          "examples": ["Antigamente não havia internet.", "Eu sempre ia a pé."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Banco e finanças", "words": ["conta corrente", "conta poupança", "cheque", "cartão de crédito", "cartão de débito", "transferência", "saque", "depósito", "saldo", "extrato"] },
+        { "group": "Operações", "words": ["abrir conta", "depositar", "sacar", "transferir", "pagar", "receber", "trocar", "financiar"] },
+        { "group": "Pessoas no banco", "words": ["gerente", "caixa", "cliente", "funcionário", "atendente"] },
+        { "group": "Documentos", "words": ["CPF", "RG", "comprovante", "contrato", "formulário", "extrato"] }
+      ],
+      "communicativeFunctions": [
+        "Realizar operações bancárias",
+        "Falar sobre hábitos passados",
+        "Descrever situações do passado",
+        "Narrar histórias com perfeito e imperfeito",
+        "Falar sobre infância e memórias"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Na agência de turismo",
+      "titleRu": "В туристическом агентстве",
+      "pages": { "start": 101, "end": 118 },
+      "cefr": "A2+",
+      "dialogueTitle": "Na agência de turismo",
+      "textoNarrativo": "Planejando viagem — turismo no Brasil",
+      "topics": [
+        "Planejamento de viagens",
+        "Destinos turísticos do Brasil",
+        "Hotéis e acomodações",
+        "Intenções e planos futuros",
+        "Clima e estações do ano"
+      ],
+      "grammar": [
+        {
+          "topic": "Futuro do presente — verbos regulares",
+          "details": "-AR/-ER/-IR: falarei, falarás, falará, falaremos, falarão (mesma terminação para todos)",
+          "examples": ["Amanhã viajarei para o Rio.", "Nós ficaremos uma semana."]
+        },
+        {
+          "topic": "Futuro do presente — irregulares DIZER, FAZER, TRAZER",
+          "details": "dizer → dir-: direi, dirá, diremos, dirão; fazer → far-: farei, fará, faremos, farão; trazer → trar-: trarei, trará, traremos, trarão",
+          "examples": ["O que você dirá a ela?", "Eu farei tudo.", "Trarei presentes."]
+        },
+        {
+          "topic": "Futuro imediato: IR + infinitivo",
+          "details": "Expressão de planos futuros próximos: vou/vai/vamos/vão + infinitivo",
+          "examples": ["Vou viajar nas férias.", "Ela vai estudar amanhã.", "Vamos sair às 8h."]
+        },
+        {
+          "topic": "Pronomes oblíquos diretos: o, a, os, as",
+          "details": "Substituem o objeto direto; posição após o verbo (ênclise) ou antes (próclise)",
+          "examples": ["Eu o conheço.", "Você a viu?", "Não os encontrei."]
+        },
+        {
+          "topic": "Pronomes oblíquos indiretos: lhe, lhes",
+          "details": "Substituem o objeto indireto (a + pessoa)",
+          "examples": ["Vou lhe ligar.", "Ela lhes deu presentes.", "Posso lhe perguntar algo?"]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Viagem", "words": ["passagem", "passaporte", "visto", "reserva", "hotel", "pousada", "hostel", "malas", "itinerário"] },
+        { "group": "Destinos BR", "words": ["Amazônia", "Nordeste", "Pantanal", "Fernando de Noronha", "Foz do Iguaçu", "Lençóis Maranhenses", "Chapada Diamantina"] },
+        { "group": "Clima", "words": ["verão", "inverno", "primavera", "outono", "chuva", "sol", "frio", "calor", "temperatura", "seca"] },
+        { "group": "No hotel", "words": ["check-in", "check-out", "quarto duplo", "quarto simples", "café da manhã", "meia pensão", "pensão completa"] }
+      ],
+      "communicativeFunctions": [
+        "Planejar e organizar viagens",
+        "Falar sobre planos e intenções futuras",
+        "Fazer reservas e contratar serviços",
+        "Descrever destinos turísticos",
+        "Falar sobre clima e estação do ano"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "No médico",
+      "titleRu": "У врача",
+      "pages": { "start": 119, "end": 130 },
+      "cefr": "A2+",
+      "dialogueTitle": "No médico",
+      "textoNarrativo": "Saúde e bem-estar — sistema de saúde brasileiro",
+      "topics": [
+        "Partes do corpo",
+        "Sintomas e doenças",
+        "Consulta médica",
+        "Farmácia e medicamentos",
+        "Sistema de saúde"
+      ],
+      "grammar": [
+        {
+          "topic": "Futuro do pretérito (condicional) — verbos regulares",
+          "details": "Terminações: -ia, -ia, -íamos, -iam (para -AR/-ER/-IR) → falar: falaria, falaria, falaríamos, falariam",
+          "examples": ["Eu iria ao médico, mas não tenho tempo.", "Ela tomaria o remédio?"]
+        },
+        {
+          "topic": "Futuro do pretérito — irregulares (base dos irregulares do futuro)",
+          "details": "dizer → diria; fazer → faria; trazer → traria (mesma base irregular do futuro simples)",
+          "examples": ["O que você faria no meu lugar?", "Ela diria a verdade."]
+        },
+        {
+          "topic": "Mais-que-perfeito composto",
+          "details": "tinha/havia + particípio passado. Indica ação anterior a outra ação passada.",
+          "examples": ["Quando cheguei, ele já tinha saído.", "Ela havia tomado o remédio antes."]
+        },
+        {
+          "topic": "Preposições: por, para, com, sem, sobre, entre, até",
+          "details": "Distinções de uso: por (motivo, duração), para (destino, finalidade), por + artigo = pelo/pela",
+          "examples": ["Fui ao médico por causa da dor.", "Este remédio é para a tosse.", "Passo pela farmácia."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Corpo humano", "words": ["cabeça", "pescoço", "ombro", "braço", "mão", "dedo", "peito", "costas", "barriga", "perna", "joelho", "pé"] },
+        { "group": "Sintomas", "words": ["dor de cabeça", "febre", "tosse", "gripe", "resfriado", "enjoo", "tontura", "cansaço", "dor de garganta"] },
+        { "group": "Consulta", "words": ["médico", "enfermeiro/a", "receita", "exame", "cirurgia", "diagnóstico", "tratamento", "plano de saúde"] },
+        { "group": "Farmácia", "words": ["remédio", "comprimido", "xarope", "pomada", "injeção", "antibiótico", "analgésico", "dosagem"] }
+      ],
+      "communicativeFunctions": [
+        "Descrever sintomas e problemas de saúde",
+        "Falar sobre hipóteses e situações imaginárias",
+        "Narrar sequência de eventos passados",
+        "Dar e seguir instruções médicas",
+        "Usar preposições para expressar motivo e finalidade"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Televisão",
+      "titleRu": "Телевидение",
+      "pages": { "start": 131, "end": 142 },
+      "cefr": "B1",
+      "dialogueTitle": "Televisão",
+      "textoNarrativo": "Programação de TV — cultura popular brasileira",
+      "topics": [
+        "Programação de televisão",
+        "Cultura popular brasileira",
+        "Dando instruções e conselhos",
+        "Textos descritivos",
+        "Pronomes relativos"
+      ],
+      "grammar": [
+        {
+          "topic": "Modo imperativo — formas afirmativas e negativas",
+          "details": "Afirmativo: 3ª pessoa do presente (você); 1ª pessoa do pl. (vamos); Negativo: presente do subjuntivo",
+          "examples": ["Fale mais devagar!", "Não fale tão rápido!", "Vamos jantar!", "Não corra!"]
+        },
+        {
+          "topic": "Imperativo irregular: SER, ESTAR, IR, VIR, PÔR, TER, FAZER, SABER, QUERER",
+          "details": "seja, esteja, vá, venha, ponha, tenha, faça, saiba, queira",
+          "examples": ["Seja feliz!", "Vai lá!", "Venha aqui!", "Tenha paciência!"]
+        },
+        {
+          "topic": "Pronomes relativos: que, quem, onde",
+          "details": "que (coisas e pessoas — sujeito/objeto), quem (pessoas com preposição), onde (lugar)",
+          "examples": ["O livro que comprei é ótimo.", "A pessoa de quem falo é minha amiga.", "A cidade onde moro é bonita."]
+        },
+        {
+          "topic": "Pronomes relativos: o qual/a qual/os quais/as quais, cujo/cuja",
+          "details": "o qual (substitui que com preposição mais longa), cujo/cuja (de quem, de que — indica posse)",
+          "examples": ["O problema pelo qual me preocupo é sério.", "A empresa cujo dono conheço é grande."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "TV e programação", "words": ["novela", "telejornal", "documentário", "série", "desenho animado", "reality show", "apresentador", "canal", "programa"] },
+        { "group": "Mídia digital", "words": ["streaming", "episódio", "temporada", "legenda", "dublagem", "assinatura", "aplicativo"] },
+        { "group": "Cultura BR", "words": ["carnaval", "samba", "funk", "forró", "MPB", "telenovela", "Globo", "SBT"] },
+        { "group": "Instruções", "words": ["ligue", "desligue", "mude", "abaixe", "aumente", "pause", "avance", "volte"] }
+      ],
+      "communicativeFunctions": [
+        "Dar ordens, instruções e conselhos",
+        "Fazer pedidos educados",
+        "Conectar orações com pronomes relativos",
+        "Falar sobre programas de TV e entretenimento",
+        "Descrever pessoas e coisas com orações relativas"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Procurando emprego",
+      "titleRu": "В поисках работы",
+      "pages": { "start": 143, "end": 158 },
+      "cefr": "B1",
+      "dialogueTitle": "Procurando emprego",
+      "textoNarrativo": "Mercado de trabalho — A sogra (contexto humorístico)",
+      "topics": [
+        "Mercado de trabalho",
+        "Currículo e entrevista",
+        "Expressão de desejos e dúvidas",
+        "Emoções e sentimentos",
+        "Contexto humorístico: A sogra"
+      ],
+      "grammar": [
+        {
+          "topic": "Presente do subjuntivo — verbos regulares",
+          "details": "-AR (base: -e): fale, fale, falemos, falem; -ER (base: -a): coma, coma, comamos, comam; -IR (base: -a): abra, abra, abramos, abram",
+          "examples": ["Espero que você fale com ele.", "Quero que ela coma.", "É importante que você abra a janela."]
+        },
+        {
+          "topic": "Presente do subjuntivo — verbos irregulares",
+          "details": "SER: seja; ESTAR: esteja; IR: vá; QUERER: queira; SABER: saiba; HAVER: haja; DAR: dê",
+          "examples": ["Espero que seja fácil.", "Quero que você vá.", "É bom que saiba disso."]
+        },
+        {
+          "topic": "Expressões que exigem subjuntivo (WEIRDO + dúvida)",
+          "details": "querer que, esperar que, precisar que, é pena que, é importante que, duvidar que, talvez, oxalá",
+          "examples": ["Quero que você venha.", "É pena que ela não possa.", "Talvez ele saiba.", "Duvido que isso seja verdade."]
+        },
+        {
+          "topic": "Conjunções e locuções conjuntivas com subjuntivo",
+          "details": "para que, a fim de que, antes que, embora, mesmo que, desde que",
+          "examples": ["Falo devagar para que você entenda.", "Embora esteja cansado, vou trabalhar."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Emprego", "words": ["currículo", "entrevista", "vaga", "salário", "contrato", "cargo", "empresa", "chefe", "colega", "demissão", "promoção"] },
+        { "group": "Qualidades profissionais", "words": ["organizado", "criativo", "responsável", "pontual", "comunicativo", "experiente", "dedicado"] },
+        { "group": "Emoções", "words": ["alegre", "triste", "preocupado", "nervoso", "animado", "surpreso", "frustrado", "esperançoso"] },
+        { "group": "Escritório", "words": ["reunião", "prazo", "projeto", "relatório", "apresentação", "equipe", "cliente", "meta"] }
+      ],
+      "communicativeFunctions": [
+        "Falar sobre desejos e expectativas",
+        "Expressar dúvida e incerteza",
+        "Descrever qualidades pessoais e profissionais",
+        "Redigir e apresentar currículo",
+        "Participar de entrevista de emprego"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Impostos",
+      "titleRu": "Налоги",
+      "pages": { "start": 159, "end": 172 },
+      "cefr": "B1",
+      "dialogueTitle": "Impostos",
+      "textoNarrativo": "Sistema tributário brasileiro — impostos e cidadania",
+      "topics": [
+        "Sistema tributário brasileiro",
+        "Cidadania e obrigações",
+        "Situações hipotéticas",
+        "Condições irreais",
+        "Crítica social"
+      ],
+      "grammar": [
+        {
+          "topic": "Imperfeito do subjuntivo — verbos regulares",
+          "details": "Base: 3ª pessoa plural do pretérito perfeito (ex: falaram → fala-) + -sse/-sses/-sse/-ssemos/-ssem",
+          "examples": ["Se eu falasse com ele...", "Seria bom que ela comesse.", "Se eles viessem..."]
+        },
+        {
+          "topic": "Imperfeito do subjuntivo — verbos irregulares",
+          "details": "ser: fosse; estar: estivesse; ir: fosse; ter: tivesse; fazer: fizesse; dizer: dissesse; querer: quisesse; poder: pudesse; vir: viesse; saber: soubesse",
+          "examples": ["Se eu fosse rico...", "Gostaria que você tivesse vindo.", "Se pudesse, viajaria."]
+        },
+        {
+          "topic": "Orações condicionais com SE (2ª condicional — irreal no presente/futuro)",
+          "details": "SE + imperfeito do subjuntivo + condicional (futuro do pretérito)",
+          "examples": ["Se eu tivesse dinheiro, viajaria.", "Se ela pudesse, faria diferente.", "Se fosse você, não iria."]
+        },
+        {
+          "topic": "Orações condicionais com SE (3ª condicional — irreal no passado)",
+          "details": "SE + mais-que-perfeito do subjuntivo + condicional composto (teria + particípio)",
+          "examples": ["Se tivesse estudado, teria passado.", "Se você tivesse vindo, teria visto."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Impostos e tributos", "words": ["imposto", "IPTU", "IPVA", "Imposto de Renda", "nota fiscal", "contribuinte", "Receita Federal", "declaração"] },
+        { "group": "Finanças públicas", "words": ["governo", "orçamento", "investimento", "corrupção", "saúde pública", "educação pública", "infraestrutura"] },
+        { "group": "Cidadania", "words": ["direito", "dever", "votar", "CPF", "título de eleitor", "obrigação", "lei"] },
+        { "group": "Expressões condicionais", "words": ["se", "caso", "desde que", "a não ser que", "nem que", "contanto que"] }
+      ],
+      "communicativeFunctions": [
+        "Falar sobre situações hipotéticas",
+        "Expressar condições irreais no presente e passado",
+        "Discutir obrigações cívicas",
+        "Expressar crítica social",
+        "Especular sobre situações alternativas"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Família",
+      "titleRu": "Семья",
+      "pages": { "start": 173, "end": 190 },
+      "cefr": "B1",
+      "dialogueTitle": "Família",
+      "textoNarrativo": "Estrutura familiar brasileira — gerações e tradições",
+      "topics": [
+        "Relações familiares",
+        "Descrição de pessoas",
+        "Ações simultâneas e sequenciais",
+        "Voz passiva",
+        "Gerações e tradições"
+      ],
+      "grammar": [
+        {
+          "topic": "Infinitivo pessoal",
+          "details": "Infinitivo com sujeito explícito: falar/falares/falar/falarmos/falardes/falarem. Usado após preposições com sujeito diferente.",
+          "examples": ["Antes de você sair, desligue a luz.", "Para nós irmos, precisamos de dinheiro.", "Sem eles saberem..."]
+        },
+        {
+          "topic": "Gerúndio",
+          "details": "Formação: -AR → -ando; -ER/-IR → -endo/-indo. Usado para ações simultâneas, progressivo (estar + ger.)",
+          "examples": ["Estou estudando.", "Saiu correndo.", "Falando assim, não vou entender."]
+        },
+        {
+          "topic": "Particípio passado",
+          "details": "Regular: -AR→-ado, -ER/-IR→-ido. Irregulares: aberto, dito, escrito, feito, posto, vindo, visto, vindo, pago, ganho",
+          "examples": ["Ele tinha feito tudo.", "A carta foi escrita ontem.", "O trabalho está pronto."]
+        },
+        {
+          "topic": "Voz passiva com SER",
+          "details": "SER + particípio (concorda com sujeito) + por + agente. Todos os tempos verbais possíveis.",
+          "examples": ["O livro foi escrito por ela.", "Os documentos serão assinados amanhã.", "A reunião era realizada semanalmente."]
+        },
+        {
+          "topic": "Regência verbal com preposição",
+          "details": "lembrar de, esquecer de, precisar de, gostar de, depender de, cuidar de, sonhar com, casar com",
+          "examples": ["Lembro-me de você.", "Gosto de viajar.", "Sonho com uma vida melhor.", "Dependo de você."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Família extensa", "words": ["sogro/sogra", "genro", "nora", "cunhado/a", "sobrinho/a", "primo/a", "padrinho", "madrinha", "bisneto/a"] },
+        { "group": "Eventos familiares", "words": ["casamento", "batizado", "aniversário", "formatura", "funeral", "reunião de família", "churrasco"] },
+        { "group": "Relações", "words": ["amor", "carinho", "respeito", "conflito", "separação", "adoção", "herança"] },
+        { "group": "Características", "words": ["parecido", "diferente", "parecido com", "herdeiro", "tradicional", "moderno", "unido"] }
+      ],
+      "communicativeFunctions": [
+        "Descrever relações familiares",
+        "Falar sobre tradições e costumes familiares",
+        "Narrar eventos com voz passiva",
+        "Expressar ações simultâneas com gerúndio",
+        "Usar regência verbal adequada"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "O carro",
+      "titleRu": "Автомобиль",
+      "pages": { "start": 191, "end": 204 },
+      "cefr": "B1",
+      "dialogueTitle": "O carro",
+      "textoNarrativo": "Trânsito e mobilidade urbana no Brasil",
+      "topics": [
+        "Trânsito e mobilidade urbana",
+        "Compra e venda de carro",
+        "Regulamentos e leis de trânsito",
+        "Condições futuras",
+        "Legislação e normas"
+      ],
+      "grammar": [
+        {
+          "topic": "Futuro do subjuntivo — verbos regulares",
+          "details": "Base: 3ª pessoa plural do pretérito perfeito (ex: falaram → fala-) + -r/-res/-r/-rmos/-rdes/-rem",
+          "examples": ["Quando eu chegar, te ligo.", "Se você precisar, me chame.", "Onde quer que forem..."]
+        },
+        {
+          "topic": "Futuro do subjuntivo — verbos irregulares",
+          "details": "SER/IR: for; ESTAR: estiver; TER: tiver; FAZER: fizer; DIZER: disser; PODER: puder; QUERER: quiser; SABER: souber; VIR: vier; DAR: der",
+          "examples": ["Se você tiver dinheiro, compre.", "Quando ele vier, avise.", "Se eu puder, ajudo."]
+        },
+        {
+          "topic": "Orações com QUANDO + futuro do subjuntivo",
+          "details": "Quando + futuro do subjuntivo = ação futura condicionada; presente/futuro na principal",
+          "examples": ["Quando chegar em casa, vou descansar.", "Quando tiver tempo, estudarei.", "Quando ela vier, converso."]
+        },
+        {
+          "topic": "Orações com SE + futuro do subjuntivo (1ª condicional — real/provável)",
+          "details": "SE + futuro do subjuntivo + presente/futuro na principal (condição real e possível)",
+          "examples": ["Se chover, não vou sair.", "Se você vier, será ótimo.", "Se ele puder, vai ajudar."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Carro", "words": ["motor", "câmbio", "freio", "acelerador", "volante", "pneu", "gasolina", "álcool", "bateria", "tanque"] },
+        { "group": "Trânsito", "words": ["semáforo", "placa", "faixa de pedestres", "rodovia", "estacionamento", "multa", "CNH", "radar"] },
+        { "group": "Problemas mecânicos", "words": ["enguiçar", "furar", "bater", "rebocar", "consertar", "oficina", "seguro", "acidente"] },
+        { "group": "Compra e venda", "words": ["financiamento", "entrada", "parcela", "IPVA", "seguro obrigatório", "transferência"] }
+      ],
+      "communicativeFunctions": [
+        "Falar sobre planos e condições futuras",
+        "Discutir regulamentos de trânsito",
+        "Descrever problemas com o carro",
+        "Negociar compra e venda",
+        "Expressar condições reais e hipotéticas"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Cinema",
+      "titleRu": "Кино",
+      "pages": { "start": 205, "end": 218 },
+      "cefr": "B1",
+      "dialogueTitle": "Cinema",
+      "textoNarrativo": "Cinema brasileiro — história e cinematografia",
+      "topics": [
+        "Cinema e filmes",
+        "Crítica de filme",
+        "Discurso indireto",
+        "Advérbios de modo",
+        "Expressão de causa e consequência"
+      ],
+      "grammar": [
+        {
+          "topic": "Discurso indireto — declarações",
+          "details": "Verbo dizer/falar/afirmar + que + frase. Mudanças de tempo: presente→imperfeito, perfeito→mais-que-perfeito",
+          "examples": ["Ele disse que estava cansado.", "Ela falou que tinha visto o filme.", "Afirmou que viria."]
+        },
+        {
+          "topic": "Discurso indireto — perguntas e ordens",
+          "details": "Perguntas com se (sim/não) ou pronome interrogativo. Ordens: verbo mandar/pedir/ordenar + que + subjuntivo",
+          "examples": ["Perguntou se eu queria ir.", "Pediu que eu chegasse cedo.", "Mandou que ele saísse."]
+        },
+        {
+          "topic": "Verbos DEIXAR / DEIXAR DE",
+          "details": "DEIXAR + infinitivo = permitir; DEIXAR DE + infinitivo = parar de, não fazer mais",
+          "examples": ["Deixa eu falar.", "Ele deixou de fumar.", "Não me deixa dormir!", "Deixou de estudar."]
+        },
+        {
+          "topic": "Advérbios em -mente",
+          "details": "Formação: adjetivo no feminino + -mente. Uso para modificar verbos, adjetivos e outros advérbios.",
+          "examples": ["Ela fala claramente.", "Andou rapidamente.", "Ficou completamente feliz.", "É extremamente importante."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Cinema", "words": ["filme", "diretor", "roteiro", "ator", "atriz", "cena", "trilha sonora", "legendas", "estreia", "bilheteria"] },
+        { "group": "Gêneros", "words": ["drama", "comédia", "thriller", "romance", "ação", "animação", "documentário", "ficção científica", "terror"] },
+        { "group": "Crítica", "words": ["ótimo", "péssimo", "imperdível", "decepcionante", "emocionante", "chato", "surpreendente", "premiado"] },
+        { "group": "Discurso indireto", "words": ["dizer", "falar", "afirmar", "perguntar", "responder", "contar", "explicar", "pedir", "mandar"] }
+      ],
+      "communicativeFunctions": [
+        "Relatar o que alguém disse",
+        "Fazer e relatar perguntas e pedidos",
+        "Criticar e recomendar filmes",
+        "Usar advérbios de modo",
+        "Expressar causa e consequência"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Problemas da cidade",
+      "titleRu": "Проблемы города",
+      "pages": { "start": 219, "end": 232 },
+      "cefr": "B1+",
+      "dialogueTitle": "Problemas da cidade",
+      "textoNarrativo": "Urbanização e problemas sociais — desigualdade e soluções",
+      "topics": [
+        "Problemas urbanos",
+        "Desigualdade social",
+        "Ações já concluídas antes de outra",
+        "Linguagem informal brasileira",
+        "Discussão de problemas e soluções"
+      ],
+      "grammar": [
+        {
+          "topic": "Pretérito mais-que-perfeito simples",
+          "details": "Forma sintética: -ara/-eras/-ira (menos comum no oral, mais em textos formais e literários)",
+          "examples": ["Quando chegou, ela já partira.", "O livro que lera era fantástico.", "Fizera tudo antes de sair."]
+        },
+        {
+          "topic": "Voz passiva com SER — todos os tempos",
+          "details": "SER (qualquer tempo) + particípio (concordado). Agente: por + SN",
+          "examples": ["O problema foi resolvido pelo prefeito.", "As obras serão feitas em breve.", "O plano tinha sido aprovado."]
+        },
+        {
+          "topic": "Voz passiva com SE (passiva pronominal)",
+          "details": "SE + verbo ativo na 3ª pessoa (singular ou plural, concordando com o sujeito paciente)",
+          "examples": ["Vende-se apartamento.", "Alugam-se quartos.", "Fala-se português aqui."]
+        },
+        {
+          "topic": "Formas reduzidas do português brasileiro informal",
+          "details": "tá (está), tô (estou), cê (você), num (não), pra (para), pro (para o), tava (estava), né (não é)",
+          "examples": ["Cê tá bem?", "Num sei não.", "Vou pro trabalho agora.", "Tô cansado."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Problemas urbanos", "words": ["poluição", "trânsito", "violência", "desemprego", "moradia", "saneamento", "enchente", "lixo"] },
+        { "group": "Soluções", "words": ["investimento", "política pública", "reciclagem", "transporte público", "habitação social", "segurança"] },
+        { "group": "Desigualdade", "words": ["favela", "pobreza", "riqueza", "desigualdade", "oportunidade", "discriminação", "exclusão social"] },
+        { "group": "Linguagem informal", "words": ["cara", "gente", "tá bom", "legal", "massa", "bacana", "trampo (trabalho)", "grana (dinheiro)"] }
+      ],
+      "communicativeFunctions": [
+        "Discutir problemas urbanos e sociais",
+        "Narrar ações em sequência temporal no passado",
+        "Usar voz passiva em diferentes contextos",
+        "Compreender e usar linguagem informal",
+        "Propor soluções para problemas"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Férias",
+      "titleRu": "Каникулы / Отпуск",
+      "pages": { "start": 233, "end": 246 },
+      "cefr": "B1+",
+      "dialogueTitle": "Férias",
+      "textoNarrativo": "Férias dos sonhos — A sogra (continuação)",
+      "topics": [
+        "Férias e turismo",
+        "Narração de experiências de viagem",
+        "Concessão e contraste",
+        "Finalidade e propósito",
+        "Tempos compostos do subjuntivo"
+      ],
+      "grammar": [
+        {
+          "topic": "Perfeito do subjuntivo (presente composto do subjuntivo)",
+          "details": "tenha + particípio. Indica ação anterior ao momento presente, com dúvida ou expectativa.",
+          "examples": ["Espero que ele tenha chegado bem.", "Duvido que eles tenham feito isso.", "É possível que ela tenha saído."]
+        },
+        {
+          "topic": "Mais-que-perfeito do subjuntivo",
+          "details": "tivesse + particípio. Usado em condicionais passadas e orações com expressões do passado.",
+          "examples": ["Se eu tivesse sabido, teria ido.", "Era importante que você tivesse estudado.", "Tomara que tivesse dado certo."]
+        },
+        {
+          "topic": "Futuro composto do subjuntivo",
+          "details": "tiver + particípio. Indica ação anterior a outra ação futura em orações com quando, se, etc.",
+          "examples": ["Quando tiver terminado, avise.", "Se você tiver dormido bem, vai conseguir.", "Assim que tiver chegado, te ligo."]
+        },
+        {
+          "topic": "Conjunções com subjuntivo: embora, para que, antes que, sem que, a menos que",
+          "details": "embora/mesmo que (concessão) + subj.; para que/a fim de que (finalidade) + subj.; antes que/sem que + subj.",
+          "examples": ["Embora esteja cansado, vou trabalhar.", "Para que você entenda, vou explicar.", "Saiu sem que eu visse."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Férias e lazer", "words": ["praia", "montanha", "campo", "resort", "cruzeiro", "mochilão", "ecoturismo", "turismo cultural"] },
+        { "group": "Experiências", "words": ["aventura", "mergulho", "trilha", "escalada", "surfe", "pesca", "passeio de barco"] },
+        { "group": "Alojamento", "words": ["pousada", "camping", "hostel", "Airbnb", "chalé", "cabana", "resort all-inclusive"] },
+        { "group": "Conjunções", "words": ["embora", "mesmo que", "ainda que", "para que", "a fim de que", "antes que", "sem que", "a menos que"] }
+      ],
+      "communicativeFunctions": [
+        "Narrar experiências de viagem",
+        "Expressar concessão e contraste",
+        "Indicar finalidade e propósito",
+        "Usar tempos compostos do subjuntivo",
+        "Contar histórias com sequência temporal complexa"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Viagem ao Pantanal",
+      "titleRu": "Путешествие на Пантанал",
+      "pages": { "start": 247, "end": 260 },
+      "cefr": "B1+",
+      "dialogueTitle": "Viagem ao Pantanal",
+      "textoNarrativo": "Fauna e flora do Pantanal — ecoturismo",
+      "topics": [
+        "Natureza e meio ambiente",
+        "Ecoturismo",
+        "Colocação pronominal",
+        "Regência verbal avançada",
+        "Verbos com preposição"
+      ],
+      "grammar": [
+        {
+          "topic": "Colocação pronominal: próclise",
+          "details": "Pronome ANTES do verbo após: palavras negativas (não, nunca, jamais), advérbios, conjunções, pronomes interrogativos/relativos",
+          "examples": ["Não me diga isso.", "Nunca te vi assim.", "Sempre o encontro aqui.", "Quem me chamou?"]
+        },
+        {
+          "topic": "Colocação pronominal: ênclise",
+          "details": "Pronome DEPOIS do verbo: início de frase, após vírgula, em imperativos afirmativos",
+          "examples": ["Diga-me a verdade.", "Manda-me uma mensagem.", "Ela disse-me que sim.", "Ajude-me!"]
+        },
+        {
+          "topic": "Colocação pronominal: mesóclise",
+          "details": "Pronome DENTRO do verbo: com futuro do presente e futuro do pretérito (uso formal/literário)",
+          "examples": ["Dir-lhe-ei a verdade.", "Dar-te-ia o livro.", "Far-me-ão a proposta."]
+        },
+        {
+          "topic": "Verbos com preposição — regência verbal avançada",
+          "details": "assistir a, precisar de, gostar de, depender de, sonhar com, casar com, optar por, preocupar-se com, insistir em, desistir de",
+          "examples": ["Assisto aos filmes.", "Preciso de ajuda.", "Sonho com você.", "Insistiu em vir."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Natureza e fauna", "words": ["onça-pintada", "tuiuiú", "capivara", "jacaré", "arara", "piranha", "tamanduá", "lobo-guará"] },
+        { "group": "Meio ambiente", "words": ["preservação", "sustentabilidade", "desmatamento", "queimada", "ecossistema", "biodiversidade", "espécie ameaçada"] },
+        { "group": "Ecoturismo", "words": ["safari fotográfico", "guia turístico", "trilha ecológica", "observação de pássaros", "pesca esportiva"] },
+        { "group": "Verbos de regência", "words": ["assistir a", "precisar de", "gostar de", "depender de", "sonhar com", "casar com", "optar por", "insistir em"] }
+      ],
+      "communicativeFunctions": [
+        "Descrever paisagens e natureza",
+        "Usar pronomes com posição correta",
+        "Falar sobre meio ambiente e conservação",
+        "Usar verbos com regência correta",
+        "Narrar experiência de ecoturismo"
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Revisão",
+      "titleRu": "Повторение",
+      "pages": { "start": 261, "end": 276 },
+      "cefr": "B1+",
+      "dialogueTitle": "Revisão geral",
+      "textoNarrativo": "Textos de interpretação — revisão cumulativa de tudo",
+      "topics": [
+        "Revisão geral de todos os tempos verbais",
+        "Interpretação de textos",
+        "Revisão do subjuntivo",
+        "Exercícios cumulativos",
+        "Preparação para uso autônomo"
+      ],
+      "grammar": [
+        {
+          "topic": "Revisão: todos os tempos do indicativo",
+          "details": "Presente, Pretérito Perfeito, Imperfeito, Mais-que-perfeito (simples e composto), Futuro do Presente, Futuro do Pretérito",
+          "examples": ["Revisão integrada de todos os tempos estudados."]
+        },
+        {
+          "topic": "Revisão: modos imperativo e subjuntivo",
+          "details": "Imperativo afirmativo/negativo; Subjuntivo presente, imperfeito, futuro e formas compostas",
+          "examples": ["Revisão integrada dos modos verbais."]
+        },
+        {
+          "topic": "Revisão: pronomes e colocação pronominal",
+          "details": "Pessoais, possessivos, demonstrativos, relativos, indefinidos; próclise, ênclise, mesóclise",
+          "examples": ["Revisão integrada dos pronomes."]
+        },
+        {
+          "topic": "Revisão: voz passiva, discurso indireto e períodos complexos",
+          "details": "Voz passiva com ser/se; discurso indireto; orações condicionais, concessivas, temporais, finais",
+          "examples": ["Revisão integrada de estruturas complexas."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Revisão temática", "words": ["todos os campos semânticos estudados nos 17 unidades anteriores"] },
+        { "group": "Conectivos e coesão", "words": ["portanto", "entretanto", "no entanto", "além disso", "por outro lado", "consequentemente", "assim", "visto que"] },
+        { "group": "Expressões idiomáticas", "words": ["dar um jeito", "ficar de olho", "bater papo", "estar por dentro", "meter o pé", "virar a mesa"] }
+      ],
+      "communicativeFunctions": [
+        "Aplicar todos os conteúdos aprendidos",
+        "Interpretar textos autênticos",
+        "Produzir textos escritos e orais com autonomia",
+        "Revisar e corrigir erros mais comuns",
+        "Usar conectivos para garantir coesão textual"
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Verbos irregulares frequentes",
+      "titleRu": "Частые неправильные глаголы",
+      "pages": { "start": 0, "end": 0 },
+      "cefr": "A2–B1",
+      "dialogueTitle": "Tabela de referência",
+      "textoNarrativo": "Presente e pretérito perfeito: núcleo do livro (dar, dizer, dormir, estar, fazer, ir, ler, ouvir, pedir, perder, poder) + ser, ter, vir, querer, saber, ver, trazer, pôr, sair, haver e verbos do apêndice (caber, cobrir, construir, divertir, medir, odiar, rir, sentir, valer).",
+      "topics": [
+        "Presente do indicativo: alterações de radical (digo, durmo, leio, ouço, peço, perco, posso…)",
+        "Pretérito perfeito: formas regulares do grupo e irregularidades (disse, fiz, fui, pude, pôde…)",
+        "Contrastes Brasil / Portugal (tu vs você)"
+      ],
+      "grammar": [
+        {
+          "topic": "Verbos irregulares frequentes — presente e pretérito perfeito",
+          "details": "Tabela de referência ampliada: verbos frequentes + ser, ter, vir, querer, saber, ver, trazer, pôr, sair, haver + apêndice (caber, cobrir, construir, divertir, medir, odiar, rir, sentir, valer). Ver Gramática → «Частые неправильные» e Conjugador.",
+          "examples": ["Eu digo a verdade.", "Ela dormiu bem.", "Nós pedimos ajuda.", "Ele pôde sair."]
+        }
+      ],
+      "vocabulary": [
+        { "group": "Verbos da tabela (livro + apêndice)", "words": ["dar", "dizer", "dormir", "estar", "fazer", "ir", "ler", "ouvir", "pedir", "perder", "poder", "ser", "ter", "vir", "querer", "saber", "ver", "trazer", "pôr", "sair", "haver", "caber", "cobrir", "construir", "divertir", "medir", "odiar", "rir", "sentir", "valer"] }
+      ],
+      "communicativeFunctions": [
+        "Conjugar verbos irregulares no presente e no pretérito perfeito",
+        "Usar formas corretas em frases simples"
+      ]
+    }
+  ],
+  "appendix": {
+    "pages": { "start": 277, "end": 295 },
+    "title": "Tabelas de Conjugação Verbal",
+    "regularVerbs": [
+      { "infinitive": "morar", "class": "-AR" },
+      { "infinitive": "atender", "class": "-ER" },
+      { "infinitive": "abrir", "class": "-IR" }
+    ],
+    "irregularVerbs": [
+      "caber", "cobrir", "construir", "dar", "dizer", "divertir", "dormir",
+      "fazer", "ir", "ler", "medir", "odiar", "ouvir", "pedir", "perder",
+      "poder", "pôr", "querer", "rir", "saber", "sentir", "trazer",
+      "valer", "ver", "vir"
+    ]
+  }
+}

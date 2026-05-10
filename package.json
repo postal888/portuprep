@@ -1,0 +1,11 @@
+{
+  "name": "portuprep",
+  "private": true,
+  "description": "Корень репозитория: команды проксируются в tutor-app",
+  "scripts": {
+    "dev": "npm run dev --prefix tutor-app",
+    "build": "npm run build --prefix tutor-app",
+    "preview": "npm run preview --prefix tutor-app",
+    "lint": "npm run lint --prefix tutor-app"
+  }
+}

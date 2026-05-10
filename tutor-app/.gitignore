@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.*
+!.env.example
+
+# Локальный словарь (создаётся dev-сервером)
+vocabulary/words.json
+
+# Журнал FLE (ошибки и сессии; создаётся dev/preview-сервером)
+data/fle-study-log.json
+
+# Индекс большого П–Р словаря (RAG по PDF; пересобирается локально)
+data/big-pt-ru-dict/
+
+# Книги для читалки (локально; не коммитим бинарники)
+public/books/*.pdf
+public/books/*.docx
+
+# Картинки карточек словаря (генерируются через UI / API)
+public/vocab-images/*.png
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

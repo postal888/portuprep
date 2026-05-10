@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- saved from url=(0012)about:srcdoc -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <style>
+            html, body, iframe { margin: 0; padding: 0; width: 100%; height: 100%; }
+            iframe { display: block; border: none; }
+        </style>
+    </head>
+    <body>
+        <iframe id="inner" src="https://d2z0o16i8xm8ak.cloudfront.net/web/direct-files/08bd808cd3d0731beef11caeaa837fd8/97960f14-b53b-4c38-85a6-f986abf57f43/02b99e64.html?Expires=1776374739&amp;Signature=DCubhleubTXmuGHBD~FQnocG51l6Z0YzUrXgyGVWj3l3xPEl84hjvEJmf4o3dvT-ffFR7YvyxQb~dN9~kz1cVAR1PqN2Y5yuemzGACzhgqNtYuLkMLPzWmdhBziEW9-HoRigXltvLnYdOkbMlCv1zIAZE2CGYY4o48PE0N331qTiWt7VCn2xipnVKlg~m0qjtio86TKeN6R6S3qu07iS1Khf0w4ZBZWcQ625XqNuGCwPbiIR-P5M8LJOMI1igfs~8IDpng9uNAEiG6y~~WuKCTa1RB7yHKu3yBkuz99NpLMhbdLACdOX8SN6gDOocQibWxt0SEib3K0MheoZpEEzmw__&amp;Key-Pair-Id=K1BF7XGXAIMYNX" title="Embedded App" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox allow-forms allow-downloads" referrerpolicy="no-referrer" width="100%" height="100%" loading="lazy" style="color-scheme: normal;"></iframe>
+        <script>
+            // postMessage broker for inline edit screenshot capture.
+            // Forwards capture requests from the parent (Perplexity page) to the
+            // inner iframe (sandbox app) and relays the result back. The inner
+            // iframe needs a responder script (injected by ASI) to handle the
+            // INLINE_EDIT_CAPTURE_REQUEST message and send back the screenshot.
+            const inner = document.getElementById('inner');
+            window.addEventListener('message', function(e) {
+                if (e.data && e.data.type === 'INLINE_EDIT_CAPTURE_REQUEST' && e.source === window.parent && inner && inner.contentWindow) {
+                    inner.contentWindow.postMessage(e.data, '*');
+                }
+                if (e.data && e.data.type === 'INLINE_EDIT_SCREENSHOT_RESULT' && inner && e.source === inner.contentWindow) {
+                    window.parent.postMessage(e.data, '*');
+                }
+            });
+        </script>
+    
+  </body></html>

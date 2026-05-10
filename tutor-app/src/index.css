@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Корень только под iframe; токены и типографика внутри portuprep-extracted.html */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+.portuprep-frame {
+  display: block;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #171614;
+}
