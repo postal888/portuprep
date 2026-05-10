@@ -120,11 +120,6 @@ a,button,[role="button"],input,textarea,select{transition:color var(--transition
 #undo-delete-btn[hidden]{display:none!important}
 .topbar-title{font-size:var(--text-lg);font-weight:600;flex:1;min-width:0}
 .topbar-actions{display:flex;align-items:center;gap:var(--space-2)}
-.sidebar-nav-toggle{display:none!important;flex-shrink:0;min-width:2.5rem;min-height:2.25rem;color:var(--color-text)}
-.sidebar-nav-toggle-svg{display:block;flex-shrink:0}
-.sidebar-close-btn{display:none!important;flex-shrink:0;margin-left:auto}
-.sidebar-backdrop{display:none}
-body.sidebar-drawer-open{overflow:hidden}
 .page-content{flex:1;overflow-y:auto;padding:var(--space-6) var(--space-6)}
 
 /* ───── BUTTONS ───── */
@@ -740,53 +735,105 @@ button.vocab-group-head:focus-visible{outline:2px solid var(--color-primary);out
 @media(max-width:900px){.yt-layout{grid-template-columns:1fr;height:auto}.grammar-layout{grid-template-columns:1fr;height:auto}}
 @media(max-width:700px){.sidebar{width:200px}.flashcard-stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){
+  .app-shell{
+    flex-direction:column;
+    overflow:hidden;
+  }
   .sidebar{
-    position:fixed;left:0;top:0;bottom:0;z-index:800;width:min(260px,88vw);
-    transform:translateX(-100%);transition:transform var(--transition);
-    box-shadow:var(--shadow-lg)
+    position:relative!important;
+    left:auto!important;top:auto!important;bottom:auto!important;
+    width:100%!important;
+    max-height:min(40vh,300px);
+    flex-shrink:0;
+    transform:none!important;
+    transition:none;
+    box-shadow:none;
+    border-right:none;
+    border-bottom:1px solid var(--color-border);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    z-index:auto;
   }
-  .sidebar.open{transform:translateX(0)}
+  .sidebar.open{transform:none!important}
+  .sidebar-header{
+    flex-shrink:0;
+    padding:var(--space-2) var(--space-4);
+    gap:var(--space-2);
+  }
+  .logo-sub{display:none}
+  .sidebar-nav{
+    flex:1;
+    min-height:0;
+    overflow-y:auto;
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    padding:var(--space-2) var(--space-3);
+  }
+  .sidebar-footer{
+    flex-shrink:0;
+    padding:var(--space-2) var(--space-3);
+    font-size:10px;
+  }
+  .nav-item{
+    padding:var(--space-2) var(--space-3);
+    font-size:var(--text-xs);
+  }
+  .nav-label{padding:0 var(--space-2);margin-bottom:2px}
+  .activity-cal-wrap{margin-top:var(--space-1);padding-top:var(--space-1)}
+  .main-area{
+    flex:1;
+    min-height:0;
+    overflow:hidden;
+  }
   .page-content{padding:var(--space-4)}
-  .sidebar-nav-toggle{display:inline-flex!important}
-  .sidebar-close-btn{display:inline-flex!important}
-  .sidebar-backdrop{
-    display:block;position:fixed;inset:0;background:oklch(0 0 0/.45);z-index:799;
-    opacity:0;pointer-events:none;transition:opacity var(--transition)
-  }
-  .sidebar-backdrop.is-open{opacity:1;pointer-events:auto;-webkit-tap-highlight-color:transparent}
 }
 
-/* То же по классу с JS: в iframe на телефонах иногда неверная ширина для @media */
+html.narrow-drawer .app-shell{
+  flex-direction:column;
+  overflow:hidden;
+}
 html.narrow-drawer .sidebar{
-  position:fixed;left:0;top:0;bottom:0;z-index:800;width:min(260px,88vw)!important;
-  transform:translateX(-100%);transition:transform var(--transition);
-  box-shadow:var(--shadow-lg)
+  position:relative!important;
+  left:auto!important;top:auto!important;bottom:auto!important;
+  width:100%!important;
+  max-height:min(40vh,300px);
+  flex-shrink:0;
+  transform:none!important;
+  transition:none;
+  box-shadow:none;
+  border-right:none;
+  border-bottom:1px solid var(--color-border);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  z-index:auto;
 }
-html.narrow-drawer .sidebar.open{transform:translateX(0)}
+html.narrow-drawer .sidebar.open{transform:none!important}
+html.narrow-drawer .sidebar-header{
+  flex-shrink:0;
+  padding:var(--space-2) var(--space-4);
+  gap:var(--space-2);
+}
+html.narrow-drawer .logo-sub{display:none}
+html.narrow-drawer .sidebar-nav{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:var(--space-2) var(--space-3);
+}
+html.narrow-drawer .sidebar-footer{
+  flex-shrink:0;
+  padding:var(--space-2) var(--space-3);
+  font-size:10px;
+}
+html.narrow-drawer .nav-item{font-size:var(--text-xs)}
+html.narrow-drawer .nav-label{padding:0 var(--space-2);margin-bottom:2px}
+html.narrow-drawer .activity-cal-wrap{margin-top:var(--space-1);padding-top:var(--space-1)}
+html.narrow-drawer .main-area{flex:1;min-height:0;overflow:hidden}
 html.narrow-drawer .page-content{padding:var(--space-4)}
-html.narrow-drawer .sidebar-nav-toggle{display:inline-flex!important}
-html.narrow-drawer .sidebar-close-btn{display:inline-flex!important}
-html.narrow-drawer .sidebar-backdrop{
-  display:block;position:fixed;inset:0;background:oklch(0 0 0/.45);z-index:799;
-  opacity:0;pointer-events:none;transition:opacity var(--transition)
-}
-html.narrow-drawer .sidebar-backdrop.is-open{opacity:1;pointer-events:auto;-webkit-tap-highlight-color:transparent}
-
-/* Запасная кнопка меню (не режется шапкой / не зависит от flex topbar) */
-.mobile-menu-fab{
-  display:none;box-sizing:border-box;position:fixed;
-  bottom:max(16px, env(safe-area-inset-bottom, 0px));
-  left:max(12px, env(safe-area-inset-left, 0px));
-  z-index:860;align-items:center;justify-content:center;gap:8px;
-  padding:12px 18px;min-height:48px;border-radius:var(--radius-full);
-  background:var(--color-surface);border:1px solid var(--color-border);
-  box-shadow:var(--shadow-lg);color:var(--color-text);
-  font-size:var(--text-sm);font-weight:600;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;touch-action:manipulation
-}
-.mobile-menu-fab svg{display:block;flex-shrink:0}
-@media(max-width:768px){.mobile-menu-fab{display:flex}}
-html.narrow-drawer .mobile-menu-fab{display:flex!important}
 
 /* ───── EMBEDDED COURSE (Português Básico) ───── */
 .course-module-wrap{height:calc(100dvh - 52px - var(--space-12));min-height:min(400px,70dvh);border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden;background:var(--color-surface)}
@@ -926,9 +973,6 @@ html.narrow-drawer .mobile-menu-fab{display:flex!important}
         <div class="logo-text">PortuPrep</div>
         <div class="logo-sub">Português · B2 prep</div>
       </div>
-      <button type="button" class="btn btn-ghost btn-sm sidebar-close-btn" aria-label="Закрыть меню" onclick="closeSidebarNav()">
-        <i data-lucide="x"></i>
-      </button>
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section">
@@ -1004,14 +1048,10 @@ html.narrow-drawer .mobile-menu-fab{display:flex!important}
       </div>
     </div>
   </aside>
-  <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="closeSidebarNav()" aria-hidden="true"></div>
 
   <!-- MAIN AREA -->
   <div class="main-area">
     <header class="topbar">
-      <button type="button" class="btn btn-ghost btn-sm sidebar-nav-toggle" id="sidebar-nav-toggle" aria-expanded="false" aria-controls="sidebar" aria-label="Открыть меню разделов" onclick="toggleSidebarNav(event)">
-        <svg class="sidebar-nav-toggle-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
       <button type="button" class="btn btn-ghost btn-sm" id="undo-delete-btn" hidden onclick="undoDeleteWord()" title="Вернуть удалённое слово">
         <i data-lucide="undo-2"></i> Отменить
       </button>
@@ -4540,36 +4580,7 @@ function isSidebarDrawerMode() {
 
 function closeSidebarNav() {
   var sb = document.getElementById('sidebar');
-  var bd = document.getElementById('sidebar-backdrop');
-  var btn = document.getElementById('sidebar-nav-toggle');
   if (sb) sb.classList.remove('open');
-  if (bd) bd.classList.remove('is-open');
-  if (btn) btn.setAttribute('aria-expanded', 'false');
-  document.body.classList.remove('sidebar-drawer-open');
-}
-
-function openSidebarNav() {
-  refreshNarrowDrawerClass();
-  if (!isSidebarDrawerMode()) return;
-  var sb = document.getElementById('sidebar');
-  var bd = document.getElementById('sidebar-backdrop');
-  var btn = document.getElementById('sidebar-nav-toggle');
-  if (sb) sb.classList.add('open');
-  if (bd) bd.classList.add('is-open');
-  if (btn) btn.setAttribute('aria-expanded', 'true');
-  document.body.classList.add('sidebar-drawer-open');
-}
-
-function toggleSidebarNav(ev) {
-  if (ev) ev.stopPropagation();
-  refreshNarrowDrawerClass();
-  var sb = document.getElementById('sidebar');
-  if (!sb) return;
-  if (sb.classList.contains('open')) closeSidebarNav();
-  else openSidebarNav();
-  try {
-    lucide.createIcons();
-  } catch (e) {}
 }
 
 function onViewportDrawerMaybeChanged() {
@@ -12480,9 +12491,5 @@ void (async function initApp() {
   try { renderYtHistory(); } catch (e) {}
 })();
 </script>
-<button type="button" class="mobile-menu-fab" id="mobile-menu-fab" aria-label="Меню разделов" onclick="toggleSidebarNav(event)">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-  Меню
-</button>
 </body>
 </html>
