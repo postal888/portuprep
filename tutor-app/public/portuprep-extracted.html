@@ -9229,66 +9229,9 @@ function ensureYoutubeIframeApi(cb) {
 }
 
 function bindYoutubePlayerForSync() {
-  if (__ytLocalVideoEl) return;
-  var iframe = document.getElementById('yt-player-frame');
-  if (!iframe || iframe.tagName !== 'IFRAME') return;
-  if (__ytPlayer) return;
-  var bindGen = __ytBindGen;
-  ensureYoutubeIframeApi(function() {
-    if (bindGen !== __ytBindGen) return;
-    if (__ytPlayer) return;
-    var el = document.getElementById('yt-player-frame');
-    if (!el || el.tagName !== 'IFRAME') return;
-    try {
-      /* Готовый embed-iframe + IFrame API на этот элемент: div+width/height 100% у API часто даёт некликабельный или пустой плеер. */
-      __ytPlayer = new YT.Player(el, {
-        events: {
-          onReady: function() {
-            try {
-              var YT0 = window.YT;
-              if (YT0 && YT0.PlayerState) {
-                var st0 = __ytPlayer.getPlayerState();
-                __ytTranscriptAutoscroll = st0 === YT0.PlayerState.PLAYING || st0 === YT0.PlayerState.BUFFERING;
-              } else __ytTranscriptAutoscroll = false;
-            } catch (e) {
-              __ytTranscriptAutoscroll = false;
-            }
-            var t0 = 0;
-            try {
-              t0 = __ytPlayer.getCurrentTime();
-            } catch (e) {}
-            syncTranscriptToTime(t0);
-            __ytSyncTimer = setInterval(function() {
-              if (!__ytPlayer || !__ytPlayer.getCurrentTime) return;
-              try {
-                syncTranscriptToTime(__ytPlayer.getCurrentTime());
-              } catch (e) {}
-            }, 90);
-          },
-          onStateChange: function(ev) {
-            if (!__ytPlayer || !__ytPlayer.getCurrentTime) return;
-            try {
-              var st = ev.data;
-              var YT = window.YT;
-              if (!YT || !YT.PlayerState) return;
-              __ytTranscriptAutoscroll = st === YT.PlayerState.PLAYING || st === YT.PlayerState.BUFFERING;
-              if (
-                st === YT.PlayerState.PLAYING ||
-                st === YT.PlayerState.PAUSED ||
-                st === YT.PlayerState.BUFFERING ||
-                st === YT.PlayerState.CUED ||
-                st === YT.PlayerState.ENDED
-              ) {
-                syncTranscriptToTime(__ytPlayer.getCurrentTime());
-              }
-            } catch (e) {}
-          },
-        },
-      });
-    } catch (e) {
-      console.warn('YT.Player init', e);
-    }
-  });
+  // Fail-safe mode: avoid YT.Player binding that can make iframe unclickable on some browsers/devices.
+  // Playback remains native via the embed iframe; transcript can still load independently.
+  return;
 }
 
 async function fetchAndRenderTranscript(vid) {
@@ -9426,16 +9369,7 @@ async function loadYouTube() {
       encodeURIComponent(langEmbed) +
       originQ;
     wrap.appendChild(ifr);
-    function scheduleYtPlayerBind() {
-      requestAnimationFrame(function () {
-        bindYoutubePlayerForSync();
-      });
-    }
-    ifr.addEventListener('load', scheduleYtPlayerBind);
-    setTimeout(function () {
-      if (__ytCurrentVid !== vid) return;
-      if (!__ytPlayer) scheduleYtPlayerBind();
-    }, 600);
+    // In fail-safe mode we do not attach YT.Player to keep native controls clickable.
   }
   void fetchAndRenderTranscript(vid).finally(function () {
     setYtSaveOfflineBtnEnabled(!!(__transcriptTimedLines && __transcriptTimedLines.length));
@@ -9452,9 +9386,7 @@ async function reloadCurrentTranscript() {
 }
 
 function onYtLangChange() {
-  if (__ytCurrentVid) void fetchAndRenderTranscript(__ytCurrentVid).then(function() {
-    if (document.getElementById('yt-player-frame')) bindYoutubePlayerForSync();
-  });
+  if (__ytCurrentVid) void fetchAndRenderTranscript(__ytCurrentVid);
 }
 
 function loadDemoTranscript() {
