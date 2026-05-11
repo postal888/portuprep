@@ -27,12 +27,40 @@ const USER_AGENT =
 const RE_XML_TRANSCRIPT = /<text start="([^"]*)" dur="([^"]*)">([^<]*)<\/text>/g
 const INNERTUBE_URL = 'https://www.youtube.com/youtubei/v1/player?prettyPrint=false'
 
-/** Bump periodically if WEB stops returning captions (see yt-dlp INNERTUBE_CLIENTS). */
+/** Bump periodically if clients stop returning captions (see yt-dlp INNERTUBE_CLIENTS). */
 const EXTRA_INNERTUBE_CLIENTS: ReadonlyArray<{
   client: Record<string, string | undefined>
   userAgent: string
   thirdParty?: { embedUrl: string }
 }> = [
+  {
+    client: {
+      clientName: 'TVHTML5',
+      clientVersion: '7.20260114.12.00',
+      userAgent:
+        'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/25.lts.30.1034943-gold (unlike Gecko), Unknown_TV_Unknown_0/Unknown (Unknown, Unknown)',
+      hl: 'en',
+    },
+    userAgent:
+      'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/25.lts.30.1034943-gold (unlike Gecko), Unknown_TV_Unknown_0/Unknown (Unknown, Unknown)',
+  },
+  {
+    client: {
+      clientName: 'IOS',
+      clientVersion: '21.02.3',
+      deviceMake: 'Apple',
+      deviceModel: 'iPhone16,2',
+      userAgent: 'com.google.ios.youtube/21.02.3 (iPhone16,2; U; CPU iOS 18_3_2 like Mac OS X;)',
+      osName: 'iPhone',
+      osVersion: '18.3.2.22D82',
+      hl: 'en',
+    },
+    userAgent: 'com.google.ios.youtube/21.02.3 (iPhone16,2; U; CPU iOS 18_3_2 like Mac OS X;)',
+  },
+  {
+    client: { clientName: 'ANDROID', clientVersion: '20.10.38', hl: 'en' },
+    userAgent: 'com.google.android.youtube/20.10.38 (Linux; U; Android 14)',
+  },
   {
     client: { clientName: 'WEB', clientVersion: '2.20260114.08.00', hl: 'en' },
     userAgent:
@@ -49,6 +77,13 @@ const EXTRA_INNERTUBE_CLIENTS: ReadonlyArray<{
     userAgent:
       'Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36,gzip(gfe)',
   },
+]
+
+/** Публичные Piped API (резерв, если прямой YouTube с IP датацентра не отдаёт captionTracks). */
+const PIPED_API_BASES = [
+  'https://pipedapi.kavin.rocks',
+  'https://api.piped.projectsegfau.lt',
+  'https://pipedapi.moomoo.me',
 ]
 
 function decodeEntities(text: string): string {
@@ -221,6 +256,101 @@ async function fetchViaEmbedPage(
   return fetchTranscriptFromTracks(captionTracks, videoId, lang, fetchFn)
 }
 
+function vttTimestampToSeconds(ts: string): number {
+  const t = ts.trim()
+  const parts = t.split(':')
+  if (parts.length === 3) {
+    return parseInt(parts[0]!, 10) * 3600 + parseInt(parts[1]!, 10) * 60 + parseFloat(parts[2]!)
+  }
+  if (parts.length === 2) {
+    return parseInt(parts[0]!, 10) * 60 + parseFloat(parts[1]!)
+  }
+  return parseFloat(t)
+}
+
+/** Минимальный разбор WebVTT для субтитров с Piped/прокси. */
+function parseWebVtt(text: string, lang: string): TranscriptResponse[] {
+  const t = text.replace(/^\uFEFF/, '').trim()
+  if (!/^WEBVTT/i.test(t)) return []
+  const results: TranscriptResponse[] = []
+  const blocks = t.split(/\n\n+/)
+  for (const block of blocks) {
+    const lines = block.split('\n').filter((ln) => ln.trim())
+    if (lines.length < 2) continue
+    let i = 0
+    if (/^\d+$/.test(lines[i]!.trim())) i++ // optional cue number
+    const timeLine = lines[i]
+    if (!timeLine || !/-->/.test(timeLine)) continue
+    const [fromRaw, toRaw] = timeLine.split(/\s+-->\s+/)
+    if (!fromRaw || !toRaw) continue
+    const start = vttTimestampToSeconds(fromRaw)
+    const end = vttTimestampToSeconds(toRaw.split(/\s/)[0]!)
+    const body = lines.slice(i + 1).join(' ').replace(/<[^>]+>/g, '').trim()
+    if (!body) continue
+    const durationSec = Math.max(0.05, end - start)
+    results.push({
+      text: decodeEntities(body),
+      duration: durationSec,
+      offset: start,
+      lang,
+    })
+  }
+  return results
+}
+
+type PipedSubtitle = { url: string; code?: string; name?: string }
+
+async function fetchViaPiped(
+  videoId: string,
+  lang: string | undefined,
+  fetchFn: typeof fetch,
+): Promise<TranscriptResponse[]> {
+  for (const baseRaw of PIPED_API_BASES) {
+    const base = baseRaw.replace(/\/$/, '')
+    try {
+      const streamsUrl = `${base}/streams/${encodeURIComponent(videoId)}`
+      const res = await fetchFn(streamsUrl, {
+        headers: { 'User-Agent': USER_AGENT, Accept: 'application/json' },
+      })
+      if (!res.ok) continue
+      const data = (await res.json()) as { subtitles?: PipedSubtitle[] }
+      const subs = data.subtitles
+      if (!Array.isArray(subs) || subs.length === 0) continue
+
+      let chosen: PipedSubtitle | undefined
+      if (lang) {
+        chosen =
+          subs.find((s) => s.code === lang) ??
+          subs.find((s) => s.code?.toLowerCase().startsWith(lang.toLowerCase()))
+      }
+      if (!chosen) {
+        chosen =
+          subs.find((s) => /auto|automat/i.test(s.name || '')) ?? subs.find((s) => /english/i.test(s.name || '')) ?? subs[0]
+      }
+      if (!chosen?.url) continue
+
+      let subUrl = chosen.url
+      if (!subUrl.startsWith('http')) {
+        subUrl = new URL(subUrl.startsWith('/') ? subUrl : `/${subUrl}`, `${base}/`).href
+      }
+
+      const tRes = await fetchFn(subUrl, { headers: { 'User-Agent': USER_AGENT } })
+      if (!tRes.ok) continue
+      const raw = await tRes.text()
+      const resolvedLang = lang ?? chosen.code ?? 'und'
+
+      let segments = parseTranscriptXml(raw, resolvedLang)
+      if (segments.length === 0) {
+        segments = parseWebVtt(raw, resolvedLang)
+      }
+      if (segments.length > 0) return segments
+    } catch {
+      continue
+    }
+  }
+  return []
+}
+
 /**
  * Same as YoutubeTranscript.fetchTranscript, plus InnerTube WEB/MWEB/embed fallbacks when the stock path falsely reports captions disabled.
  */
@@ -255,6 +385,13 @@ export async function fetchYoutubeTranscriptRobust(
 
   try {
     const segments = await fetchViaEmbedPage(videoId, lang, fetchFn)
+    if (segments.length > 0) return segments
+  } catch (e) {
+    lastErr = e
+  }
+
+  try {
+    const segments = await fetchViaPiped(videoId, lang, fetchFn)
     if (segments.length > 0) return segments
   } catch (e) {
     lastErr = e

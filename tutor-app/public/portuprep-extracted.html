@@ -9330,10 +9330,15 @@ async function fetchAndRenderTranscript(vid) {
     } else {
       __transcriptTimedLines = [];
       var msg = (e && e.message) ? e.message : String(e);
+      var hintTranscript =
+        'Субтитры на сервере запрашиваются без входа в Google: с IP хостинга YouTube иногда не отдаёт дорожки (локально через <code>npm run dev</code> это реже). Попробуй другой язык в списке или обнови страницу.';
+      var hintProxy =
+        ' Если вместо ответа приходит HTML/404, на nginx нужен прокси <code>/api/</code> на <code>npm run preview:api</code>.';
+      var footerHint = hintTranscript + (/не JSON|404|прокси/i.test(msg) ? hintProxy : '');
       body.innerHTML = '<div class="empty-state" style="padding:var(--space-8)">' +
         '<i data-lucide="alert-circle"></i>' +
-        '<p style="font-size:var(--text-sm);max-width:36ch">' + escapeHtml(msg) + '</p>' +
-        '<p style="font-size:var(--text-xs);color:var(--color-text-faint)">Попробуй другой ролик или язык. На хостинге нужен прокси <code>/api/</code> на процесс <code>npm run preview:api</code> (vite preview с API).</p>' +
+        '<p style="font-size:var(--text-sm);max-width:42ch">' + escapeHtml(msg) + '</p>' +
+        '<p style="font-size:var(--text-xs);color:var(--color-text-faint);max-width:52ch">' + footerHint + '</p>' +
         '<button type="button" class="btn btn-primary btn-sm" onclick="loadDemoTranscript()">Демо-субтитры</button></div>';
       lucide.createIcons();
       try {
