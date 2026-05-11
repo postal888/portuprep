@@ -9230,34 +9230,18 @@ function ensureYoutubeIframeApi(cb) {
 
 function bindYoutubePlayerForSync() {
   if (__ytLocalVideoEl) return;
-  var host = document.getElementById('yt-player-frame');
-  if (!host) return;
+  var iframe = document.getElementById('yt-player-frame');
+  if (!iframe || iframe.tagName !== 'IFRAME') return;
   if (__ytPlayer) return;
-  var vid = __ytCurrentVid;
-  if (!vid) return;
   var bindGen = __ytBindGen;
-  var langPref = 'pt';
-  try {
-    var langSel = document.getElementById('yt-lang');
-    if (langSel && langSel.value) langPref = langSel.value;
-  } catch (e0) {}
   ensureYoutubeIframeApi(function() {
     if (bindGen !== __ytBindGen) return;
     if (__ytPlayer) return;
+    var el = document.getElementById('yt-player-frame');
+    if (!el || el.tagName !== 'IFRAME') return;
     try {
-      /* Плеер из пустого div + videoId — стабильнее, чем оборачивать готовый iframe (клики/play на части браузеров). */
-      __ytPlayer = new YT.Player('yt-player-frame', {
-        videoId: vid,
-        width: '100%',
-        height: '100%',
-        playerVars: {
-          playsinline: 1,
-          rel: 0,
-          modestbranding: 1,
-          cc_load_policy: 1,
-          cc_lang_pref: langPref,
-          enablejsapi: 1,
-        },
+      /* Готовый embed-iframe + IFrame API на этот элемент: div+width/height 100% у API часто даёт некликабельный или пустой плеер. */
+      __ytPlayer = new YT.Player(el, {
         events: {
           onReady: function() {
             try {
@@ -9308,7 +9292,8 @@ function bindYoutubePlayerForSync() {
 }
 
 async function fetchAndRenderTranscript(vid) {
-  const body = document.getElementById('transcript-body');
+  var body = document.getElementById('transcript-body');
+  if (!body) return;
   const langEl = document.getElementById('yt-lang');
   const lang = langEl && langEl.value ? langEl.value : '';
   body.innerHTML = '<div class="empty-state" style="padding:var(--space-8)"><i data-lucide="loader-2" class="spin-yt"></i><p style="font-size:var(--text-sm)">Загрузка субтитров…</p></div>';
@@ -9316,7 +9301,11 @@ async function fetchAndRenderTranscript(vid) {
   try {
     var qs = new URLSearchParams({ v: vid });
     if (lang) qs.set('lang', lang);
-    var r = await fetch('/api/youtube-transcript?' + qs.toString());
+    var transcriptUrl =
+      typeof URL !== 'undefined'
+        ? new URL('/api/youtube-transcript?' + qs.toString(), window.location.origin).href
+        : '/api/youtube-transcript?' + qs.toString();
+    var r = await fetch(transcriptUrl, { credentials: 'same-origin', cache: 'no-store' });
     var data;
     try {
       data = await r.json();
@@ -9412,9 +9401,41 @@ async function loadYouTube() {
     }
   }
   if (!usedLocalVideo) {
-    document.getElementById('yt-embed-wrap').innerHTML =
-      '<div id="yt-player-frame" class="yt-player-host" title="YouTube video player"></div>';
-    bindYoutubePlayerForSync();
+    var wrap = document.getElementById('yt-embed-wrap');
+    var langEmbed = 'pt';
+    try {
+      var langSel2 = document.getElementById('yt-lang');
+      if (langSel2 && langSel2.value) langEmbed = langSel2.value;
+    } catch (el2) {}
+    var originQ = '';
+    try {
+      originQ = '&origin=' + encodeURIComponent(window.location.origin);
+    } catch (eo) {}
+    wrap.innerHTML = '';
+    var ifr = document.createElement('iframe');
+    ifr.id = 'yt-player-frame';
+    ifr.title = 'YouTube video player';
+    ifr.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    ifr.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
+    ifr.setAttribute('allowfullscreen', '');
+    ifr.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;display:block';
+    ifr.src =
+      'https://www.youtube.com/embed/' +
+      encodeURIComponent(vid) +
+      '?enablejsapi=1&playsinline=1&rel=0&modestbranding=1&cc_load_policy=1&cc_lang_pref=' +
+      encodeURIComponent(langEmbed) +
+      originQ;
+    wrap.appendChild(ifr);
+    function scheduleYtPlayerBind() {
+      requestAnimationFrame(function () {
+        bindYoutubePlayerForSync();
+      });
+    }
+    ifr.addEventListener('load', scheduleYtPlayerBind);
+    setTimeout(function () {
+      if (__ytCurrentVid !== vid) return;
+      if (!__ytPlayer) scheduleYtPlayerBind();
+    }, 600);
   }
   void fetchAndRenderTranscript(vid).finally(function () {
     setYtSaveOfflineBtnEnabled(!!(__transcriptTimedLines && __transcriptTimedLines.length));

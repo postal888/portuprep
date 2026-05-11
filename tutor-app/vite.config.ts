@@ -1441,7 +1441,21 @@ function portuprepApiPlugin(api: PortuprepApiOpts) {
           return
         }
 
-        const segments = await fetchYoutubeTranscriptRobust(v, lang ? { lang } : {})
+        const transcriptTimeoutMs = 45_000
+        const segments = await Promise.race([
+          fetchYoutubeTranscriptRobust(v, lang ? { lang } : {}),
+          new Promise<never>((_, reject) => {
+            setTimeout(
+              () =>
+                reject(
+                  new Error(
+                    'Таймаут загрузки субтитров (45 с). Повторите запрос или смените язык в списке.',
+                  ),
+                ),
+              transcriptTimeoutMs,
+            )
+          }),
+        ])
 
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json; charset=utf-8')
