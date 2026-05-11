@@ -2020,6 +2020,13 @@ function resolveNivelTestSource(mode: string): string | undefined {
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   return {
+    preview: {
+      host: '127.0.0.1',
+      port: 4173,
+      strictPort: true,
+      // nginx proxy_pass передаёт Host продакшен-домена — разрешаем для /api/
+      allowedHosts: ['gentechnet.com', 'www.gentechnet.com', 'localhost', '127.0.0.1'],
+    },
     plugins: [
       react(),
       portuprepApiPlugin({
