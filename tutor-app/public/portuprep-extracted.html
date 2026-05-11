@@ -7049,6 +7049,8 @@ let __ytVideoTitle = '';
 let __transcriptTimedLines = [];
 let __transcriptActiveIdx = -1;
 let __ytPlayer = null;
+/** Без YT.Player: последняя позиция после перемотки через ?start= в embed (getCurrentTime недоступен). */
+let __ytEmbedLastSeekSec = null;
 /** Защита от двойного YT.Player на одном iframe */
 let __ytBindGen = 0;
 let __ytSyncTimer = null;
@@ -7159,6 +7161,11 @@ function getCurrentYouTubePlaybackTimeSec() {
       if (isFinite(t) && t >= 0) return Number(t);
     }
   } catch (e2) {}
+  if (__ytEmbedLastSeekSec != null && isFinite(__ytEmbedLastSeekSec)) {
+    return Math.max(0, Number(__ytEmbedLastSeekSec) || 0);
+  }
+  var st = ytGetEmbedIframeSrcStartSec();
+  if (st != null) return st;
   return 0;
 }
 
@@ -8143,8 +8150,8 @@ function difficultySeekToSegment(segmentIndex) {
   if (L) {
     if (__ytLocalVideoEl) {
       try { __ytLocalVideoEl.currentTime = Math.max(0, Number(L.startSec) || 0); } catch (e) {}
-    } else if (__ytPlayer && __ytPlayer.seekTo) {
-      try { __ytPlayer.seekTo(L.startSec, true); } catch (e2) {}
+    } else {
+      ytSeekOrScrubToSec(L.startSec);
     }
   }
   var tb = document.getElementById('transcript-body');
@@ -8657,8 +8664,7 @@ function renderVideoCardsList() {
 
 function seekYoutubeVideoCard(t) {
   try {
-    if (__ytLocalVideoEl) __ytLocalVideoEl.currentTime = Math.max(0, Number(t) || 0);
-    else if (__ytPlayer && __ytPlayer.seekTo) __ytPlayer.seekTo(t, true);
+    ytSeekOrScrubToSec(t);
   } catch (e) {}
 }
 
@@ -9031,8 +9037,7 @@ function transcriptLineSeek(idx, event) {
     try { __ytLocalVideoEl.currentTime = Math.max(0, Number(L.startSec) || 0); } catch (e) {}
     return;
   }
-  if (!__ytPlayer || !__ytPlayer.seekTo) return;
-  try { __ytPlayer.seekTo(L.startSec, true); } catch (e2) {}
+  ytSeekOrScrubToSec(L.startSec);
 }
 
 function teardownYtSync() {
@@ -9054,7 +9059,58 @@ function teardownYtSync() {
     try { __ytPlayer.destroy(); } catch (e4) {}
   }
   __ytPlayer = null;
+  __ytEmbedLastSeekSec = null;
   __ytTranscriptAutoscroll = false;
+}
+
+function ytGetEmbedIframeSrcStartSec() {
+  var ifr = document.getElementById('yt-player-frame');
+  if (!ifr || ifr.tagName !== 'IFRAME') return null;
+  try {
+    var u = new URL(ifr.src);
+    var s = u.searchParams.get('start');
+    if (s == null || s === '') return null;
+    var n = parseInt(s, 10);
+    return isFinite(n) && n >= 0 ? n : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+/** Перемотка без IFrame API: перезагрузка embed с ?start= (клики по субтитрам / карточкам). */
+function ytEmbedIframeSeekToSec(sec) {
+  var ifr = document.getElementById('yt-player-frame');
+  if (!ifr || ifr.tagName !== 'IFRAME') return false;
+  try {
+    var u = new URL(ifr.src);
+    var start = Math.max(0, Math.floor(Number(sec) || 0));
+    u.searchParams.set('start', String(start));
+    ifr.src = u.toString();
+    __ytEmbedLastSeekSec = start;
+    try {
+      syncTranscriptToTime(start);
+    } catch (e2) {}
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function ytSeekOrScrubToSec(sec) {
+  var t = Math.max(0, Number(sec) || 0);
+  if (__ytLocalVideoEl) {
+    try {
+      __ytLocalVideoEl.currentTime = t;
+    } catch (e0) {}
+    return;
+  }
+  if (__ytPlayer && typeof __ytPlayer.seekTo === 'function') {
+    try {
+      __ytPlayer.seekTo(t, true);
+    } catch (e1) {}
+    return;
+  }
+  ytEmbedIframeSeekToSec(t);
 }
 
 function renderYouTubeOfflineVideo(blob, opts) {
