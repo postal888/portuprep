@@ -9368,7 +9368,7 @@ async function fetchAndRenderTranscript(vid) {
   }
 }
 
-function loadYouTube() {
+async function loadYouTube() {
   const raw = document.getElementById('yt-url-input').value.trim();
   const match = raw.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
   if (!match) { alert('Введи корректную ссылку YouTube'); return; }
