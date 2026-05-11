@@ -324,8 +324,9 @@ button.vocab-group-head:focus-visible{outline:2px solid var(--color-primary);out
 .yt-input{flex:1;padding:var(--space-2) var(--space-4);border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);font-size:var(--text-sm);outline:none}
 .yt-input:focus{border-color:var(--color-primary);box-shadow:0 0 0 3px color-mix(in oklch,var(--color-primary) 20%,transparent)}
 .yt-embed-wrap{background:#000;border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:16/9;position:relative}
-.yt-embed-wrap iframe{width:100%;height:100%;border:none}
-.yt-embed-wrap video{width:100%;height:100%;border:none;background:#000}
+.yt-embed-wrap .yt-player-host{position:absolute;inset:0;width:100%;height:100%}
+.yt-embed-wrap iframe{width:100%;height:100%;border:none;display:block}
+.yt-embed-wrap video{width:100%;height:100%;border:none;background:#000;display:block}
 .yt-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-4);color:var(--color-text-faint);background:var(--color-surface)}
 .transcript-panel{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);display:flex;flex-direction:column;min-height:0;overflow:hidden}
 .transcript-header{padding:var(--space-4);border-bottom:1px solid var(--color-border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
@@ -9229,15 +9230,34 @@ function ensureYoutubeIframeApi(cb) {
 
 function bindYoutubePlayerForSync() {
   if (__ytLocalVideoEl) return;
-  var iframe = document.getElementById('yt-player-frame');
-  if (!iframe) return;
+  var host = document.getElementById('yt-player-frame');
+  if (!host) return;
   if (__ytPlayer) return;
+  var vid = __ytCurrentVid;
+  if (!vid) return;
   var bindGen = __ytBindGen;
+  var langPref = 'pt';
+  try {
+    var langSel = document.getElementById('yt-lang');
+    if (langSel && langSel.value) langPref = langSel.value;
+  } catch (e0) {}
   ensureYoutubeIframeApi(function() {
     if (bindGen !== __ytBindGen) return;
     if (__ytPlayer) return;
     try {
+      /* Плеер из пустого div + videoId — стабильнее, чем оборачивать готовый iframe (клики/play на части браузеров). */
       __ytPlayer = new YT.Player('yt-player-frame', {
+        videoId: vid,
+        width: '100%',
+        height: '100%',
+        playerVars: {
+          playsinline: 1,
+          rel: 0,
+          modestbranding: 1,
+          cc_load_policy: 1,
+          cc_lang_pref: langPref,
+          enablejsapi: 1,
+        },
         events: {
           onReady: function() {
             try {
@@ -9348,7 +9368,7 @@ async function fetchAndRenderTranscript(vid) {
   }
 }
 
-async function loadYouTube() {
+function loadYouTube() {
   const raw = document.getElementById('yt-url-input').value.trim();
   const match = raw.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
   if (!match) { alert('Введи корректную ссылку YouTube'); return; }
@@ -9392,20 +9412,16 @@ async function loadYouTube() {
     }
   }
   if (!usedLocalVideo) {
-    var origin = '';
-    try { origin = encodeURIComponent(window.location.origin); } catch (e) { origin = ''; }
-    var originParam = origin ? '&origin=' + origin : '';
     document.getElementById('yt-embed-wrap').innerHTML =
-      '<iframe id="yt-player-frame" src="https://www.youtube.com/embed/' + vid +
-      '?enablejsapi=1&playsinline=1&rel=0&modestbranding=1&cc_load_policy=1&cc_lang_pref=pt' +
-      originParam +
-      '" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"></iframe>';
-  }
-  await fetchAndRenderTranscript(vid);
-  if (!usedLocalVideo) {
+      '<div id="yt-player-frame" class="yt-player-host" title="YouTube video player"></div>';
     bindYoutubePlayerForSync();
   }
-  setYtSaveOfflineBtnEnabled(!!(__transcriptTimedLines && __transcriptTimedLines.length));
+  void fetchAndRenderTranscript(vid).finally(function () {
+    setYtSaveOfflineBtnEnabled(!!(__transcriptTimedLines && __transcriptTimedLines.length));
+    try {
+      difficultyRefreshYtToolbar();
+    } catch (e) {}
+  });
   applyYtPlaybackSourceUi();
 }
 
