@@ -3,13 +3,14 @@ import { spawn } from 'node:child_process'
 import type { IncomingMessage } from 'node:http'
 import { dirname, extname, join } from 'node:path'
 import { pipeline } from 'node:stream/promises'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { fileURLToPath } from 'node:url'
 import type { Connect, PreviewServer, ViteDevServer } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import ytdl from '@distube/ytdl-core'
 import { createBigDictApiHandler } from './lib/big-dict/vite-middleware.ts'
 import { createDifficultyApiHandler, createHealthHandler } from './lib/difficulty/vite-middleware.ts'
+import { fetchYoutubeTranscriptRobust } from './lib/youtube-transcript-extra.ts'
 
 /** Каталог `tutor-app/` (рядом с этим vite.config.ts). */
 const viteConfigDir = dirname(fileURLToPath(import.meta.url))
@@ -21,17 +22,6 @@ const ytOfflineVideoDir = join(dataDir, 'youtube-offline-videos')
 const fleStudyLogFile = join(dataDir, 'fle-study-log.json')
 const difficultyAnalysesFile = join(dataDir, 'difficulty-analyses.json')
 const FLE_STUDY_LOG_MAX_EVENTS = 15_000
-
-type YtMod = { YoutubeTranscript: (typeof import('youtube-transcript'))['YoutubeTranscript'] }
-
-let ytModulePromise: Promise<YtMod> | null = null
-function loadYoutubeTranscriptEsm(): Promise<YtMod> {
-  if (!ytModulePromise) {
-    const esmPath = join(viteConfigDir, 'node_modules/youtube-transcript/dist/youtube-transcript.esm.js')
-    ytModulePromise = import(pathToFileURL(esmPath).href) as Promise<YtMod>
-  }
-  return ytModulePromise
-}
 
 function readJsonBody(req: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -1451,13 +1441,7 @@ function portuprepApiPlugin(api: PortuprepApiOpts) {
           return
         }
 
-        const { YoutubeTranscript } = await loadYoutubeTranscriptEsm()
-        let segments
-        try {
-          segments = await YoutubeTranscript.fetchTranscript(v, lang ? { lang } : {})
-        } catch {
-          segments = await YoutubeTranscript.fetchTranscript(v)
-        }
+        const segments = await fetchYoutubeTranscriptRobust(v, lang ? { lang } : {})
 
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json; charset=utf-8')
